@@ -1,4 +1,4 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Геномный тренажёр</title>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Тренажёр биоинформатики</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;500;600;700&family=Atkinson+Hyperlegible+Mono:wght@400;600&display=swap">
 <style>
@@ -81,7 +81,7 @@ th{font-weight:700;background:var(--sunken)}
 /* shell */
 .app{display:grid;grid-template-columns:272px minmax(0,1fr);gap:0 48px;max-width:1280px;margin:0 auto}
 .rail{position:sticky;top:0;align-self:start;height:100vh;height:100dvh;overflow-y:auto;padding:28px 0 28px;display:flex;flex-direction:column;gap:20px}
-.brand{font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.15;text-decoration:none;color:var(--ink);display:block}
+.brand{font-weight:700;font-size:1.25rem;letter-spacing:-.01em;line-height:1.3;text-decoration:none;color:var(--ink);display:block}
 .brand small{display:block;font-weight:400;font-size:1rem;color:var(--ink-2);margin-top:.25rem;letter-spacing:0}
 .mods{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;max-width:none}
 .mods li{margin:0}
@@ -215,7 +215,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </style>
 <div class="app">
 <aside class="rail" aria-label="Навигация">
-  <a class="brand" href="#start">Геномный тренажёр<small>от гаплотипа до p-value</small></a>
+  <a class="brand" href="#start">Тренажёр биоинформатики<small>вопрос, данные, код, статистика</small></a>
   <nav aria-label="Модули"><ol class="mods" id="mods"></ol></nav>
   <div class="rail-foot">
     <div id="progress-text"></div>
@@ -258,6 +258,28 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
   <div class="pager"><span></span><a class="btn primary" href="#genome">Начать: геном и гаплотипы</a></div>
 </article>
+<article class="view" id="view-map" data-title="Карта задач" hidden>
+  <h1>Что можно сделать с данными: карта задач</h1>
+  <p class="lede">Биоинформатик начинает не с кода, а с вопроса. Здесь собраны типичные биологические вопросы и то, что с ними можно сделать: какие нужны данные, какой метод, что получится на выходе и где обычно ошибаются.</p>
+
+  <h2>Как смотреть на любую задачу</h2>
+  <ol>
+    <li><strong>Вопрос.</strong> Что именно хочу узнать, одним предложением.</li>
+    <li><strong>Данные.</strong> Что у меня есть (формат, объём, сколько образцов) и чего не хватает.</li>
+    <li><strong>Метод.</strong> Какой анализ отвечает на вопрос и что он предполагает.</li>
+    <li><strong>Проверка.</strong> Как понять, что результат не артефакт: контроли, повторы, второй метод.</li>
+    <li><strong>Вывод.</strong> Что я могу утверждать, а что нет.</li>
+  </ol>
+
+  <h2>Вопросы и анализы</h2>
+  <p>Раскрой вопрос, чтобы увидеть путь. В конце каждого пути ссылки на модуль и задачи практикума, где этот шаг тренируется.</p>
+  <div id="map-list"></div>
+
+  <div class="note warn"><b>Границы карты</b>
+  Это не полный справочник, а типичные случаи для биологии. Для филогении, эпигенетики, метагеномики и других направлений в тренажёре пока нет модулей и задач: там указаны только общие шаги.</div>
+
+  <div class="pager"><a class="btn" href="#start">Назад: старт</a><a class="btn primary" href="#genome">Дальше: геном и гаплотипы</a></div>
+</article>
 <article class="view" id="view-genome" data-title="Геном и гаплотипы" hidden>
   <h1>Геном и гаплотипы</h1>
   <p class="lede">База, без которой фраза из начала не читается: что лежит в геноме, почему у каждого животного их по сути два и откуда берутся «копии».</p>
@@ -288,6 +310,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <li><strong>Indel</strong>: вставка или выпадение нескольких букв.</li>
     <li><strong>Структурные варианты</strong> (SV): выпали, вставились или перевернулись большие куски. К ним относятся <strong>вариации числа копий</strong> (CNV): в одном гаплотипе у гена больше копий, чем в другом.</li>
   </ul>
+  <p><strong>Ровно два.</strong> У одной особи диплоидного вида (к ним относятся летучие мыши) гаплотипов ровно два, по одному от каждого родителя. «Много гаплотипов» бывает только в популяции: разные особи несут разные варианты. Словом «гаплотип» называют и короткий участок: комбинацию вариантов рядом на одной хромосоме. И там у особи в каждом участке не больше двух.</p>
   <div class="bench">
     <h3>Один локус в двух гаплотипах (схема)</h3>
     <p class="hint">Симуляция: схематичные гены, не данные пилота. Во втором гаплотипе выпала одна копия и в одной накопилась поломка.</p>
@@ -304,6 +327,17 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     <p class="hint">Симуляция. Прозрачные коробки — работающие копии, штриховка — псевдогены.</p>
     <svg id="tracks-tandem" class="chart" viewBox="0 0 760 120" role="img" aria-label="Схема тандемного массива с работающими и сломанными копиями"></svg>
   </div>
+
+  <h3>Откуда известно, что гены родственные</h3>
+  <p>Общее происхождение нельзя увидеть напрямую. Его выводят из косвенных признаков:</p>
+  <ul>
+    <li><strong>Сходство последовательности выше случайного.</strong> Программа считает, как часто такое сходство возникало бы случайно (E-value). Если ничтожно редко, гены считают гомологами, то есть родственными.</li>
+    <li><strong>Одинаковое устройство:</strong> те же домены белка, похожее число и границы экзонов.</li>
+    <li><strong>Соседство:</strong> гены стоят подряд в одном месте генома, как после дупликации.</li>
+    <li><strong>Дерево.</strong> Копии одного вида и гены разных видов выстраивают в дерево, где каждое ветвление объясняется либо дупликацией, либо расхождением видов. Так отличают ортологов от паралогов.</li>
+  </ul>
+  <div class="note warn"><b>Это вывод, не наблюдение</b>
+  У сильно разошедшихся генов сходство слабеет, и родство уже не доказать. В твоём пилоте семейство — метка по лучшему запросу, а не результат дерева.</div>
 
   <h2>Что такое «фазированная сборка»</h2>
   <p>Секвенатор читает кусочки ДНК и не знает, от какого из родителей каждый. Программы собирают куски и пытаются разложить их в два набора (<strong>фазирование</strong>). Помогают длинные точные прочтения (HiFi, 15–20 тыс. букв) и данные Hi-C о близости участков в ядре. Если есть и ДНК родителей (<em>trio-binning</em>), то hap1 и hap2 действительно «мамин» и «папин». Без родителей это просто «первый набор» и «второй набор», и на длинных участках фаза может переключаться.</p>
@@ -1259,6 +1293,76 @@ minimap2<span class="w"> </span>-x<span class="w"> </span>asm10<span class="w"> 
 
   <div class="pager"><a class="btn" href="#singlecell">Назад: одноклеточные данные</a><a class="btn primary" href="#interview">Дальше: собеседование</a></div>
 </article>
+<article class="view" id="view-practice" data-title="Практикум с кодом" hidden>
+  <h1>Практикум с кодом</h1>
+  <p class="lede">Здесь ты пишешь настоящий код на Python, нажимаешь «Проверить» и получаешь результат тестов. Каждая задача — маленький кусок реального анализа: GC-состав, N50, CIGAR, фильтр VCF, поиск преждевременного стопа, перестановочный тест, поправка BH.</p>
+
+  <div class="note"><b>Как это работает</b>
+  Python (версия 3.12) запускается прямо в браузере через Pyodide. При первом запуске он скачает около 12 МБ, дальше работает из кэша. Нужен интернет и открытие страницы по адресу на GitHub Pages: в закрытом просмотрщике артефакта код не запустится. Код решения сохраняется в этом браузере.</div>
+
+  <h2>Задачи</h2>
+  <p id="prac-progress" class="score" aria-live="polite"></p>
+  <div id="prac-list"></div>
+
+  <section id="prac-task" class="bench" aria-live="polite" hidden>
+    <h3 id="prac-title" style="margin-top:0"></h3>
+    <p id="prac-bio" class="hint"></p>
+    <div id="prac-statement"></div>
+    <p><b>Пример.</b> <span id="prac-example" class="dna"></span></p>
+    <label for="prac-code">Твой код</label>
+    <textarea id="prac-code" rows="14" spellcheck="false" autocapitalize="off" autocomplete="off" style="tab-size:4"></textarea>
+    <div class="row field-inline">
+      <button type="button" id="prac-run" class="primary">Проверить на примерах</button>
+      <button type="button" id="prac-check">Проверить всё</button>
+      <button type="button" id="prac-hint">Подсказка</button>
+      <button type="button" id="prac-sol" disabled>Показать решение</button>
+      <button type="button" id="prac-reset">Сбросить код</button>
+    </div>
+    <p class="hint" id="prac-state"></p>
+    <div id="prac-hints"></div>
+    <div id="prac-out"></div>
+    <div id="prac-solution" hidden></div>
+  </section>
+
+  <h2>Как решать</h2>
+  <ul>
+    <li>Сначала прочитай пример и вручную пойми, что должно получиться. Потом пиши код.</li>
+    <li>Если тест не прошёл, смотри «Ожидалось» и «Получено»: расхождение подсказывает, где ошибка.</li>
+    <li><code>print()</code> работает: вывод покажется ниже.</li>
+    <li>Скрытые тесты проверяют крайние случаи (пустая строка, один элемент, регистр). Они нужны, чтобы нельзя было подогнать под примеры.</li>
+    <li>Подсказки открываются по одной. Решение появляется после первой проверки: сначала попробуй сама.</li>
+  </ul>
+
+  <div class="pager"><a class="btn" href="#pipelines">Назад: пайплайны</a><a class="btn primary" href="#code">Дальше: читать чужой код</a></div>
+</article>
+<article class="view" id="view-code" data-title="Читать чужой код" hidden>
+  <h1>Читать чужой код</h1>
+  <p class="lede">Большая часть работы биоинформатика — читать код других людей: инструменты из статей, пайплайны коллег, скрипты авторов. Здесь ты учишься открывать настоящие репозитории из научных журналов и находить в них главное.</p>
+
+  <h2>Как читать репозиторий</h2>
+  <ol>
+    <li><strong>README.</strong> Что делает, как ставится, какой пример запуска. Если примера нет, это тревожный знак.</li>
+    <li><strong>Статья.</strong> Какой метод реализован. Код проще читать, зная, какую формулу он считает.</li>
+    <li><strong>Точка входа.</strong> Где программа начинает работу: <code>main</code>, командная строка, главный файл пайплайна.</li>
+    <li><strong>Один запуск на примере.</strong> Запусти на маленьких данных и посмотри на входы и выходы.</li>
+    <li><strong>Тесты.</strong> Они показывают, что авторы считают правильным поведением.</li>
+    <li><strong>Одна функция целиком.</strong> Выбери функцию, которая делает главное, и пойми каждую строку. Остальное подождёт.</li>
+  </ol>
+
+  <h2>Как писать код, который прочтут</h2>
+  <ul>
+    <li>Одна функция делает одно и называется глаголом: <code>read_fasta</code>, <code>n50</code>.</li>
+    <li>Входы и выходы описаны в docstring и типах. Магических чисел нет: порог получает имя.</li>
+    <li>Случайность задаёт seed, версии программ записаны в файле.</li>
+    <li>Рядом лежит маленький тест на пример, как в практикуме.</li>
+  </ul>
+
+  <h2>Репозитории из статей</h2>
+  <p>Каждый репозиторий сопровождает опубликованную статью. Рядом с ним: что в нём читать, и вопросы, ответы на которые я проверил по самому коду.</p>
+  <div id="code-list"></div>
+
+  <div class="pager"><a class="btn" href="#practice">Назад: практикум</a><a class="btn primary" href="#interview">Дальше: собеседование</a></div>
+</article>
 <article class="view" id="view-interview" data-title="Собеседование" hidden>
   <h1>Собеседование</h1>
   <p class="lede">Как рассказать про свой пилот честно и убедительно, вопросы, которые не вошли в модули, и чего не говорить.</p>
@@ -1360,9 +1464,12 @@ minimap2<span class="w"> </span>-x<span class="w"> </span>asm10<span class="w"> 
 (function(){
 'use strict';
 const PILOT={"pairs": [{"id": "pair1", "name": "Myotis sodalis", "rows": {"B2M": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 16, "intact": 3, "partial": 12, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 23, "intact": 6, "partial": 15, "pseudogene_like": 2, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KIR": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 2, "intact": 0, "partial": 0, "pseudogene_like": 0, "uncertain": 2}, "hap2": {"loci": 4, "intact": 1, "partial": 1, "pseudogene_like": 2, "uncertain": 0}}, "KLRD1": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 1, "partial": 0, "pseudogene_like": 2, "uncertain": 0}}, "LILR": {"hap1": {"loci": 20, "intact": 8, "partial": 7, "pseudogene_like": 2, "uncertain": 3}, "hap2": {"loci": 23, "intact": 8, "partial": 11, "pseudogene_like": 2, "uncertain": 2}}, "MHC-I": {"hap1": {"loci": 34, "intact": 2, "partial": 26, "pseudogene_like": 6, "uncertain": 0}, "hap2": {"loci": 40, "intact": 1, "partial": 33, "pseudogene_like": 6, "uncertain": 0}}, "MR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 0, "intact": 0, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}}}}, {"id": "pair2", "name": "Rhinolophus clivosus", "rows": {"B2M": {"hap1": {"loci": 2, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 1, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 3, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "FCAR": {"hap1": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}}, "KLRB1": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 9, "intact": 1, "partial": 6, "pseudogene_like": 1, "uncertain": 1}, "hap2": {"loci": 7, "intact": 1, "partial": 6, "pseudogene_like": 0, "uncertain": 0}}, "KLRD1": {"hap1": {"loci": 4, "intact": 2, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRG1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LAIR1": {"hap1": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LILR": {"hap1": {"loci": 11, "intact": 1, "partial": 7, "pseudogene_like": 3, "uncertain": 0}, "hap2": {"loci": 9, "intact": 1, "partial": 8, "pseudogene_like": 0, "uncertain": 0}}, "MHC-I": {"hap1": {"loci": 18, "intact": 0, "partial": 16, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 15, "intact": 0, "partial": 14, "pseudogene_like": 1, "uncertain": 0}}, "MR1": {"hap1": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 3, "intact": 0, "partial": 0, "pseudogene_like": 2, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 0, "pseudogene_like": 3, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}}}, {"id": "pair3", "name": "Eidolon dupreanum", "rows": {"B2M": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 10, "intact": 1, "partial": 3, "pseudogene_like": 6, "uncertain": 0}, "hap2": {"loci": 10, "intact": 2, "partial": 2, "pseudogene_like": 6, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KIR": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRB1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 9, "intact": 3, "partial": 3, "pseudogene_like": 0, "uncertain": 3}, "hap2": {"loci": 11, "intact": 3, "partial": 4, "pseudogene_like": 1, "uncertain": 3}}, "KLRD1": {"hap1": {"loci": 10, "intact": 6, "partial": 3, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 9, "intact": 7, "partial": 2, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LAIR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LILR": {"hap1": {"loci": 5, "intact": 0, "partial": 3, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 5, "intact": 0, "partial": 2, "pseudogene_like": 2, "uncertain": 1}}, "MHC-I": {"hap1": {"loci": 19, "intact": 0, "partial": 17, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 16, "intact": 0, "partial": 14, "pseudogene_like": 2, "uncertain": 0}}, "MR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}}}]};
+const HARNESS="import contextlib\nimport copy\nimport io\nimport json\nimport traceback\n\n\ndef _eq(got, want, tol):\n    if isinstance(want, bool) or isinstance(got, bool):\n        return isinstance(got, bool) and isinstance(want, bool) and got == want\n    if isinstance(want, (int, float)) and isinstance(got, (int, float)):\n        return abs(got - want) <= max(tol, 0.0) if (isinstance(want, float) or isinstance(got, float)) else got == want\n    if isinstance(want, (list, tuple)) and isinstance(got, (list, tuple)):\n        return len(got) == len(want) and all(_eq(g, w, tol) for g, w in zip(got, want))\n    if isinstance(want, dict) and isinstance(got, dict):\n        return set(got) == set(want) and all(_eq(got[k], want[k], tol) for k in want)\n    return got == want\n\n\ndef _short(x, n=200):\n    s = repr(x)\n    return s if len(s) <= n else s[:n] + \"...\"\n\n\n_res = {\"stdout\": \"\", \"error\": None, \"tests\": []}\n_buf = io.StringIO()\n_ns = {\"__name__\": \"__main__\"}\nwith contextlib.redirect_stdout(_buf):\n    try:\n        exec(compile(USER_CODE, \"<твой код>\", \"exec\"), _ns)\n    except BaseException:\n        _res[\"error\"] = traceback.format_exc(limit=-3)\n    if _res[\"error\"] is None:\n        _f = _ns.get(FN)\n        if not callable(_f):\n            _res[\"error\"] = \"Не найдена функция \" + FN + \". Не переименовывай её и не удаляй def.\"\n        else:\n            for _c in json.loads(CASES_JSON):\n                _args = copy.deepcopy(_c[\"args\"])\n                _entry = {\"hidden\": bool(_c.get(\"hidden\")), \"args\": _short(_c[\"args\"]) if not _c.get(\"hidden\") else None,\n                          \"want\": _short(_c[\"expected\"]) if not _c.get(\"hidden\") else None}\n                try:\n                    _got = _f(*_args)\n                    _entry[\"ok\"] = bool(_eq(_got, _c[\"expected\"], TOL))\n                    _entry[\"got\"] = _short(_got) if not _c.get(\"hidden\") else None\n                except BaseException:\n                    _entry[\"ok\"] = False\n                    _entry[\"got\"] = None\n                    _entry[\"error\"] = traceback.format_exc(limit=-2)\n                _res[\"tests\"].append(_entry)\n_res[\"stdout\"] = _buf.getvalue()[:4000]\n_RESULT = json.dumps(_res, ensure_ascii=False)\n_RESULT\n";
+const CODEREAD=[];
 /* ---------- DATA: modules, quizzes, glossary, pipelines, markers ---------- */
 const MODS=[
  ['start','Старт','Разбор фразы из твоего пилота по кускам.'],
+ ['map','Карта задач','Биологический вопрос, данные, метод, результат, ловушка. С чего начинается работа биоинформатика.'],
  ['genome','Геном и гаплотипы','Ген, локус, аллель, гаплотип, диплоидность, фазирование.'],
  ['assembly','Сборка генома','Контиги, скаффолды, N50, почему тандемные массивы трудно собирать.'],
  ['formats','Форматы файлов','FASTA, FASTQ, SAM/CIGAR, GFF3, BED, VCF и ловушка координат.'],
@@ -1371,6 +1478,8 @@ const MODS=[
  ['stats','Статистика для омики','Пуассон, p-значение, перестановки, FDR, Firth, DESeq2.'],
  ['singlecell','Одноклеточные данные','scRNA-seq, маркеры, почему метка «NK» хрупкая.'],
  ['pipelines','Пайплайны','Экзом, RNA-seq, сборка и поиск генов по шагам.'],
+ ['practice','Практикум с кодом','18 задач на Python с проверкой прямо в браузере.'],
+ ['code','Читать чужой код','Настоящие репозитории из научных статей и как их читать.'],
  ['interview','Собеседование','Пилот за 90 секунд, вопросы, чего не говорить.'],
  ['glossary','Словарь','Короткие определения с поиском.']
 ];
@@ -1568,7 +1677,7 @@ function renderNav(){
 function show(){
   const id=currentId();
   $$('.view').forEach(v=>{v.hidden=v.id!=='view-'+id});
-  const noQuiz=!$('#view-'+id+' .quiz');if(noQuiz&&id!=='start')markDone(id);
+  const noQuiz=!$('#view-'+id+' .quiz');if(noQuiz&&id!=='start'&&id!=='practice')markDone(id);
   if(!inited[id]){inited[id]=true;if(INIT[id])INIT[id]()}
   renderNav();window.scrollTo(0,0)}
 
@@ -1878,6 +1987,222 @@ INIT.glossary=function(){
     list.innerHTML=f.map(([a,b,m])=>'<dt style="font-weight:700;margin-top:1rem">'+esc(a)+'</dt><dd style="margin:.1rem 0 0">'+esc(b)+' <a href="#'+m+'">Где разбирается</a></dd>').join('')||'<p>Ничего не найдено.</p>';
     cnt.textContent='Найдено: '+f.length+' из '+items.length}
   q.addEventListener('input',draw);draw()};
+
+const TASKS=[{"id": "gc", "track": "Основы", "title": "GC-состав", "mod": "genome", "fn": "gc_content", "tol": 1e-06, "bio": "В геномах разных организмов доля G и C разная. По ней отличают, например, гены от межгенных участков и проверяют сборку.", "statement": "<p>Верни долю букв G и C в последовательности в процентах (число от 0 до 100). Регистр не важен. Для пустой строки верни 0.0.</p>", "starter": "def gc_content(seq):\n    \"\"\"Доля G и C в процентах.\"\"\"\n    pass\n", "solution": "def gc_content(seq):\n    seq = seq.upper()\n    if not seq:\n        return 0.0\n    return 100 * (seq.count(\"G\") + seq.count(\"C\")) / len(seq)\n", "hints": ["Приведи строку к верхнему регистру: seq.upper().", "У строки есть метод .count(\"G\").", "Не делай деление, если строка пустая."], "why": "Так считают характеристики любой последовательности: пройти по буквам и посчитать. Дальше те же приёмы работают на FASTA целого генома.", "cases": [{"args": ["ATGC"], "expected": 50.0, "hidden": false}, {"args": ["AAAA"], "expected": 0.0, "hidden": false}, {"args": ["GGCC"], "expected": 100.0, "hidden": false}, {"args": ["ATGCGC"], "expected": 66.66666666666667, "hidden": false}, {"args": ["atgcgc"], "expected": 66.66666666666667, "hidden": true}, {"args": [""], "expected": 0.0, "hidden": true}]}, {"id": "revcomp", "track": "Основы", "title": "Обратная комплементарная цепь", "mod": "genome", "fn": "reverse_complement", "tol": 0, "bio": "Ген может лежать на любой из двух цепей ДНК. Чтобы искать его на второй цепи, нужна обратная комплементарная последовательность.", "statement": "<p>A паруется с T, C с G. Верни обратную комплементарную последовательность: сначала замени каждую букву на парную, потом переверни строку. Букву N оставляй как N.</p>", "starter": "def reverse_complement(seq):\n    pass\n", "solution": "def reverse_complement(seq):\n    pair = {\"A\": \"T\", \"T\": \"A\", \"C\": \"G\", \"G\": \"C\", \"N\": \"N\"}\n    return \"\".join(pair[b] for b in reversed(seq))\n", "hints": ["Заведи словарь пар: {\"A\": \"T\", ...}.", "reversed(seq) перебирает строку с конца.", "Склей буквы через \"\".join(...)."], "why": "Каждая последовательность в геноме читается в двух направлениях. Программы поиска генов проверяют обе цепи.", "cases": [{"args": ["ATGC"], "expected": "GCAT", "hidden": false}, {"args": ["AAAACCCGGT"], "expected": "ACCGGGTTTT", "hidden": false}, {"args": ["GATTACA"], "expected": "TGTAATC", "hidden": false}, {"args": ["ATGN"], "expected": "NCAT", "hidden": true}, {"args": [""], "expected": "", "hidden": true}]}, {"id": "fasta", "track": "Основы", "title": "Читаем FASTA", "mod": "formats", "fn": "read_fasta", "tol": 0, "bio": "Любой геном или набор белков лежит в FASTA. Первое, что делает любой скрипт, это читает такой файл.", "statement": "<p>Дан текст FASTA. Верни словарь <code>{имя: последовательность}</code>. Имя — первое слово после <code>&gt;</code>. Последовательность может идти на нескольких строках, склей их. Пустые строки пропусти.</p>", "starter": "def read_fasta(text):\n    pass\n", "solution": "def read_fasta(text):\n    result = {}\n    name = None\n    for line in text.splitlines():\n        line = line.strip()\n        if not line:\n            continue\n        if line.startswith(\">\"):\n            name = line[1:].split()[0]\n            result[name] = \"\"\n        else:\n            result[name] += line\n    return result\n", "hints": ["Иди по строкам: text.splitlines().", "Строка с > начинает новую запись, остальные дописываются к последней.", "Имя: line[1:].split()[0]."], "why": "Тот же цикл лежит внутри Biopython и samtools. Разница в том, что они читают файл по частям и не держат геном в памяти.", "cases": [{"args": [">seq1 первая последовательность\nATGC\nGGCC\n\n>seq2\nTTTT\n"], "expected": {"seq1": "ATGCGGCC", "seq2": "TTTT"}, "hidden": false}, {"args": [">a\nAC\nGT\n"], "expected": {"a": "ACGT"}, "hidden": false}, {"args": [">x desc\nAAA\n>y\n\nTTT\n"], "expected": {"x": "AAA", "y": "TTT"}, "hidden": true}, {"args": [">only\n"], "expected": {"only": ""}, "hidden": true}]}, {"id": "kmer", "track": "Основы", "title": "k-меры", "mod": "assembly", "fn": "kmer_counts", "tol": 0, "bio": "Сборщики геномов и программы оценки качества считают k-меры: все подстроки длины k. По их частотам оценивают размер генома и ошибки.", "statement": "<p>Верни словарь <code>{k-мер: сколько раз встретился}</code> для строки и числа k. Если строка короче k, верни пустой словарь.</p>", "starter": "def kmer_counts(seq, k):\n    pass\n", "solution": "def kmer_counts(seq, k):\n    counts = {}\n    for i in range(len(seq) - k + 1):\n        kmer = seq[i:i + k]\n        counts[kmer] = counts.get(kmer, 0) + 1\n    return counts\n", "hints": ["Окно длины k сдвигается по строке: seq[i:i+k].", "range(len(seq) - k + 1) даёт нужное число позиций.", "counts.get(kmer, 0) + 1 увеличивает счётчик."], "why": "Подсчёт k-меров — основа оценки размера генома, поиска ошибок и де Брёйновых графов сборки.", "cases": [{"args": ["ATATA", 2], "expected": {"AT": 2, "TA": 2}, "hidden": false}, {"args": ["AAAA", 3], "expected": {"AAA": 2}, "hidden": false}, {"args": ["ACGTACGT", 4], "expected": {"ACGT": 2, "CGTA": 1, "GTAC": 1, "TACG": 1}, "hidden": false}, {"args": ["ACGT", 5], "expected": {}, "hidden": true}, {"args": ["GATTACA", 1], "expected": {"G": 1, "A": 3, "T": 2, "C": 1}, "hidden": true}]}, {"id": "n50", "track": "Сборка и форматы", "title": "N50", "mod": "assembly", "fn": "n50", "tol": 1e-09, "bio": "N50 — главное число в описании сборки генома. Его указывают в каждой статье про новую сборку.", "statement": "<p>Дан список длин контигов. Верни N50: длину контига, на котором накопленная сумма длин, если идти от самых больших, достигает половины общей длины или превышает её. Список не отсортирован.</p>", "starter": "def n50(lengths):\n    pass\n", "solution": "def n50(lengths):\n    lengths = sorted(lengths, reverse=True)\n    half = sum(lengths) / 2\n    running = 0\n    for length in lengths:\n        running += length\n        if running >= half:\n            return length\n", "hints": ["Сначала отсортируй по убыванию.", "Половина общей длины: sum(lengths) / 2.", "Накапливай сумму и остановись, когда она не меньше половины."], "why": "Ты считаешь то же, что и NCBI для каждой сборки. Попробуй позже на длинах контигов пилота и убедись, что получаются те же 55,5 и 62,9 Мб.", "cases": [{"args": [[10, 8, 6, 4, 2]], "expected": 8, "hidden": false}, {"args": [[62.9, 55.5, 41.0, 30.2, 12.4, 6.1, 2.2, 0.9, 0.4, 0.1]], "expected": 55.5, "hidden": false}, {"args": [[100]], "expected": 100, "hidden": false}, {"args": [[5, 5]], "expected": 5, "hidden": true}, {"args": [[1, 9, 3, 7]], "expected": 7, "hidden": true}]}, {"id": "meanq", "track": "Сборка и форматы", "title": "Средний Phred", "mod": "formats", "fn": "mean_q", "tol": 1e-06, "bio": "Качество прочтения нельзя усреднять как обычные числа: шкала логарифмическая. Это частая ловушка в контроле качества.", "statement": "<p>Дана строка качества FASTQ (Phred+33: код символа минус 33 даёт Q). Верни Q, посчитанный через <em>среднюю вероятность ошибки</em>: найди p = 10<sup>−Q/10</sup> для каждой позиции, возьми среднее p и верни −10·log₁₀(среднее p). Не округляй.</p>", "starter": "import math\n\n\ndef mean_q(qual):\n    pass\n", "solution": "import math\n\n\ndef mean_q(qual):\n    errors = [10 ** (-(ord(c) - 33) / 10) for c in qual]\n    return -10 * math.log10(sum(errors) / len(errors))\n", "hints": ["Q символа c: ord(c) - 33.", "Ошибка: 10 ** (-Q / 10).", "Усредняй ошибки, а не Q, потом переводи обратно в Q."], "why": "Среднее Q по позициям завышает качество. Поэтому FastQC и другие программы считают по вероятностям ошибки.", "cases": [{"args": ["IIIIIIII5?#!AA"], "expected": 9.302211348209841, "hidden": false}, {"args": ["IIII"], "expected": 40.0, "hidden": false}, {"args": ["!!!"], "expected": -0.0, "hidden": false}, {"args": ["?"], "expected": 30.0, "hidden": true}, {"args": ["5555IIII"], "expected": 22.967086218813385, "hidden": true}]}, {"id": "cigar", "track": "Сборка и форматы", "title": "Конец выравнивания по CIGAR", "mod": "formats", "fn": "cigar_ref_end", "tol": 0, "bio": "В BAM написано только, где выравнивание начинается и как устроено. Конец на геноме выводят из CIGAR.", "statement": "<p>Даны CIGAR и начальная позиция <code>pos</code> (с 1). Верни последнюю позицию на референсе, которую покрывает выравнивание (включительно). Референс «съедают» операции M, D, N, = и X. Операции I, S, H референс не двигают.</p>", "starter": "import re\n\n\ndef cigar_ref_end(cigar, pos):\n    pass\n", "solution": "import re\n\n\ndef cigar_ref_end(cigar, pos):\n    ref_len = sum(int(n) for n, op in re.findall(r\"(\\d+)([MIDNSHP=X])\", cigar) if op in \"MDN=X\")\n    return pos + ref_len - 1\n", "hints": ["Разбери строку регулярным выражением: re.findall(r\"(\\d+)([MIDNSHP=X])\", cigar).", "Суммируй длины только тех операций, которые съедают референс.", "Конец включительно: pos + длина - 1."], "why": "Так вычисляют, куда на геноме легла любая строка BAM или PAF. Тот же приём лежит в samtools и pysam.", "cases": [{"args": ["40M2I30M120N25M3D20M", 1000001], "expected": 1000238, "hidden": false}, {"args": ["10M", 1], "expected": 10, "hidden": false}, {"args": ["5S10M5S", 100], "expected": 109, "hidden": false}, {"args": ["10M5I10M", 1], "expected": 20, "hidden": false}, {"args": ["10M5D10M", 1], "expected": 25, "hidden": false}, {"args": ["3=2X", 5], "expected": 9, "hidden": true}]}, {"id": "overlap", "track": "Сборка и форматы", "title": "Пересечение интервалов в BED", "mod": "formats", "fn": "interval_overlap", "tol": 0, "bio": "Какие гены попали в регион, какие регионы совпали между гаплотипами: всё это пересечения интервалов.", "statement": "<p>Даны два интервала в системе BED (начало с 0, конец не включён): <code>(start, end)</code>. Верни длину их пересечения. Если пересечения нет, верни 0. Интервалы <code>(100, 200)</code> и <code>(200, 300)</code> просто соприкасаются: пересечение 0.</p>", "starter": "def interval_overlap(a, b):\n    pass\n", "solution": "def interval_overlap(a, b):\n    return max(0, min(a[1], b[1]) - max(a[0], b[0]))\n", "hints": ["Пересечение начинается там, где позже начинается один из интервалов: max(a[0], b[0]).", "Заканчивается там, где раньше кончается один из них: min(a[1], b[1]).", "Если разность отрицательная, пересечения нет."], "why": "В BED-системе длина интервала это end - start, поэтому формула так проста. В GFF с включённым концом пришлось бы добавлять единицу.", "cases": [{"args": [[100, 200], [150, 300]], "expected": 50, "hidden": false}, {"args": [[100, 200], [200, 300]], "expected": 0, "hidden": false}, {"args": [[0, 10], [2, 5]], "expected": 3, "hidden": false}, {"args": [[5, 10], [1, 3]], "expected": 0, "hidden": false}, {"args": [[50, 60], [50, 60]], "expected": 10, "hidden": true}]}, {"id": "vcf", "track": "Сборка и форматы", "title": "Фильтр вариантов VCF", "mod": "formats", "fn": "vcf_filter", "tol": 0, "bio": "После вызова вариантов остаётся отобрать надёжные: с фильтром PASS и достаточным качеством.", "statement": "<p>Дан текст VCF. Верни список строк <code>\"хромосома:позиция\"</code> для записей, у которых поле FILTER равно <code>PASS</code> и QUAL не меньше <code>min_qual</code>. Заголовок (строки с <code>#</code>) пропусти. Если QUAL равен <code>.</code>, запись не проходит. Порядок сохрани. Поля разделены табуляцией.</p>", "starter": "def vcf_filter(text, min_qual):\n    pass\n", "solution": "def vcf_filter(text, min_qual):\n    result = []\n    for line in text.splitlines():\n        if not line or line.startswith(\"#\"):\n            continue\n        f = line.split(\"\\t\")\n        if f[6] == \"PASS\" and f[5] != \".\" and float(f[5]) >= min_qual:\n            result.append(f[0] + \":\" + f[1])\n    return result\n", "hints": ["line.split(\"\\t\") разделяет поля.", "Индексы: CHROM=0, POS=1, QUAL=5, FILTER=6.", "float(f[5]) работает только если там число."], "why": "Тот же отбор делает bcftools view -f PASS -i 'QUAL>=50'. Понимать, что он делает внутри, нужно, чтобы доверять результату.", "cases": [{"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/1:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n", 50], "expected": ["chr1:100", "chr3:7"], "hidden": false}, {"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/1:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n", 10], "expected": ["chr1:100", "chr1:250", "chr3:7"], "hidden": false}, {"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/1:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n", 1000], "expected": [], "hidden": false}, {"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/1:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n", 0], "expected": ["chr1:100", "chr1:250", "chr3:7"], "hidden": true}]}, {"id": "het", "track": "Сборка и форматы", "title": "Гетерозиготные варианты", "mod": "genome", "fn": "count_het", "tol": 0, "bio": "Гетерозиготность показывает, насколько два гаплотипа одного животного различаются. Число гетерозиготных вариантов — первая её оценка.", "statement": "<p>Дан текст VCF с одним образцом. Посчитай записи, где генотип гетерозиготный: два разных аллеля, например <code>0/1</code>, <code>1/0</code> или <code>1|0</code>. Генотип — первая часть поля образца (до первого двоеточия). Заголовок пропусти.</p>", "starter": "def count_het(text):\n    pass\n", "solution": "def count_het(text):\n    n = 0\n    for line in text.splitlines():\n        if not line or line.startswith(\"#\"):\n            continue\n        genotype = line.split(\"\\t\")[9].split(\":\")[0]\n        alleles = genotype.replace(\"|\", \"/\").split(\"/\")\n        if len(set(alleles)) == 2:\n            n += 1\n    return n\n", "hints": ["Поле образца — десятое (индекс 9).", "Генотип: split(\":\")[0].", "Замени | на / и раздели по /, затем посмотри, сколько разных аллелей."], "why": "Дели число гетерозиготных вариантов на длину генома и получишь оценку гетерозиготности особи.", "cases": [{"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/1:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n"], "expected": 3, "hidden": false}, {"args": ["##fileformat=VCFv4.2\n#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tFORMAT\ts1\nchr1\t100\t.\tA\tG\t812\tPASS\tDP=34\tGT:DP\t0/0:34\nchr1\t250\t.\tC\tT\t15\tPASS\tDP=8\tGT:DP\t1/1:8\nchr2\t40\t.\tG\tA\t300\tLowQual\tDP=20\tGT:DP\t0/1:20\nchr2\t90\t.\tT\tC\t.\tPASS\tDP=5\tGT:DP\t0/0:5\nchr3\t7\t.\tA\tC\t99\tPASS\tDP=30\tGT:DP\t1|0:30\n"], "expected": 2, "hidden": false}, {"args": ["#h\nchr1\t1\t.\tA\tG\t50\tPASS\t.\tGT\t./.\n"], "expected": 0, "hidden": true}]}, {"id": "translate", "track": "Белок и гены", "title": "Трансляция ДНК в белок", "mod": "alignment", "fn": "translate", "tol": 0, "bio": "Чтобы понять, целый ген или сломанный, нужно перевести его в белок и посмотреть на стоп-кодоны.", "statement": "<p>Переведи последовательность в белок по таблице <code>TABLE</code> (она уже в заготовке). Читай тройками с начала, остаток короче трёх букв игнорируй. Остановись на первом стоп-кодоне и включи символ <code>*</code> в ответ.</p>", "starter": "BASES = \"TCAG\"\nAMINO = \"FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG\"\nCODONS = [a + b + c for a in BASES for b in BASES for c in BASES]\nTABLE = dict(zip(CODONS, AMINO))   # TABLE[\"ATG\"] == \"M\", TABLE[\"TAA\"] == \"*\"\n\ndef translate(dna):\n    pass\n", "solution": "BASES = \"TCAG\"\nAMINO = \"FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG\"\nCODONS = [a + b + c for a in BASES for b in BASES for c in BASES]\nTABLE = dict(zip(CODONS, AMINO))   # TABLE[\"ATG\"] == \"M\", TABLE[\"TAA\"] == \"*\"\n\ndef translate(dna):\n    protein = \"\"\n    for i in range(0, len(dna) - 2, 3):\n        aa = TABLE[dna[i:i + 3]]\n        protein += aa\n        if aa == \"*\":\n            break\n    return protein\n", "hints": ["range(0, len(dna) - 2, 3) даёт начала полных троек.", "Аминокислота: TABLE[dna[i:i+3]].", "Если аминокислота равна \"*\", прекрати цикл."], "why": "Это ровно то, что проверяет miniprot, когда считает внутренние стопы (st). Сдвиг рамки видно по тому, что стоп появляется слишком рано.", "cases": [{"args": ["ATGGCTAAAGAACTGGGTCCGTTCAACGATTACTGGGAAAAATAA"], "expected": "MAKELGPFNDYWEK*", "hidden": false}, {"args": ["ATGAAATAGCCC"], "expected": "MK*", "hidden": false}, {"args": ["ATGGC"], "expected": "M", "hidden": false}, {"args": [""], "expected": "", "hidden": true}, {"args": ["ATGTGATTT"], "expected": "M*", "hidden": true}]}, {"id": "premature", "track": "Белок и гены", "title": "Преждевременный стоп", "mod": "alignment", "fn": "has_premature_stop", "tol": 0, "bio": "В пилоте ген считается целым, если нет сдвигов рамки и внутренних стопов. Здесь ты реализуешь эту проверку сама.", "statement": "<p>Дана кодирующая последовательность, которая начинается с ATG и заканчивается стоп-кодоном. Верни <code>True</code>, если ген «сломан»: длина не кратна 3 (сдвиг рамки) или стоп-кодон (TAA, TAG, TGA) встречается в рамке раньше последнего кодона. Иначе верни <code>False</code>.</p>", "starter": "STOPS = {\"TAA\", \"TAG\", \"TGA\"}\n\n\ndef has_premature_stop(cds):\n    pass\n", "solution": "STOPS = {\"TAA\", \"TAG\", \"TGA\"}\n\n\ndef has_premature_stop(cds):\n    if len(cds) % 3 != 0:\n        return True\n    codons = [cds[i:i + 3] for i in range(0, len(cds), 3)]\n    return any(c in STOPS for c in codons[:-1])\n", "hints": ["Сначала проверь len(cds) % 3.", "Разбей на кодоны срезами по 3.", "Последний кодон смотреть не надо: codons[:-1]."], "why": "Каждый «intact» в таблице пилота прошёл такую проверку на уровне выравнивания miniprot. Теперь ты знаешь, из чего она состоит.", "cases": [{"args": ["ATGGCTAAAGAACTGGGTCCGTTCAACGATTACTGGGAAAAATAA"], "expected": false, "hidden": false}, {"args": ["ATGAAATAGCCCTAA"], "expected": true, "hidden": false}, {"args": ["ATGAAACCCTAA"], "expected": false, "hidden": false}, {"args": ["ATGAAACCCTA"], "expected": true, "hidden": true}, {"args": ["ATGTGA"], "expected": false, "hidden": true}, {"args": ["ATGTAATAA"], "expected": true, "hidden": true}]}, {"id": "sw", "track": "Белок и гены", "title": "Локальное выравнивание", "mod": "alignment", "fn": "sw_score", "tol": 0, "bio": "Выравнивание — сердце поиска генов. Здесь ты считаешь лучший счёт локального выравнивания двух последовательностей.", "statement": "<p>Реализуй алгоритм Смита–Уотермена и верни лучший счёт. За совпадение даётся <code>match</code>, за замену <code>mismatch</code>, за пропуск <code>gap</code> (число отрицательное). Клетка таблицы равна максимуму из: 0, диагональ + (match или mismatch), клетка сверху + gap, клетка слева + gap. Ответ — наибольшее значение в таблице.</p>", "starter": "def sw_score(a, b, match=2, mismatch=-1, gap=-2):\n    pass\n", "solution": "def sw_score(a, b, match=2, mismatch=-1, gap=-2):\n    prev = [0] * (len(b) + 1)\n    best = 0\n    for i in range(1, len(a) + 1):\n        cur = [0] * (len(b) + 1)\n        for j in range(1, len(b) + 1):\n            diag = prev[j - 1] + (match if a[i - 1] == b[j - 1] else mismatch)\n            cur[j] = max(0, diag, prev[j] + gap, cur[j - 1] + gap)\n            best = max(best, cur[j])\n        prev = cur\n    return best\n", "hints": ["Достаточно хранить две строки таблицы: прошлую и текущую.", "Первая строка и первый столбец заполнены нулями.", "Не забывай обновлять best на каждой клетке."], "why": "Настоящие программы делают то же, но очень быстро и с хитростями для длинных последовательностей. Идея остаётся этой.", "cases": [{"args": ["TGTTACGG", "GGTTGACTA"], "expected": 8, "hidden": false}, {"args": ["AAAA", "TTTT"], "expected": 0, "hidden": false}, {"args": ["ACGT", "ACGT"], "expected": 8, "hidden": false}, {"args": ["ACGTACGT", "TACG"], "expected": 8, "hidden": false}, {"args": ["GATTACA", "GCATGCU", 3, -2, -3], "expected": 6, "hidden": true}, {"args": ["", "ACGT"], "expected": 0, "hidden": true}]}, {"id": "hapdiff", "track": "Белок и гены", "title": "Разница между гаплотипами в пилоте", "mod": "copies", "fn": "hap_diff", "tol": 0, "bio": "Это твой собственный пилот. Дан настоящий файл family_summary.tsv. Посчитай, на сколько локусов каждое семейство отличается между hap1 и hap2.", "statement": "<p>Дан текст TSV с колонками <code>family, hap, loci, intact, partial, pseudogene_like, uncertain</code>. Верни словарь <code>{семейство: loci(hap2) − loci(hap1)}</code> для семейств, которые есть в обоих гаплотипах. Первая строка — заголовок.</p>", "starter": "def hap_diff(tsv_text):\n    pass\n", "solution": "def hap_diff(tsv_text):\n    loci = {}\n    for line in tsv_text.strip().splitlines()[1:]:\n        f = line.split(\"\\t\")\n        loci[(f[0], f[1])] = int(f[2])\n    families = {fam for fam, hap in loci}\n    return {fam: loci[(fam, \"hap2\")] - loci[(fam, \"hap1\")] for fam in families if (fam, \"hap1\") in loci and (fam, \"hap2\") in loci}\n", "hints": ["Читай строки после первой: splitlines()[1:].", "Ключ словаря: (семейство, гаплотип).", "Для семейств без одного из гаплотипов разницы нет."], "why": "Тот же приём в модуле «Семейства генов» дал медиану |разницы| 1 и максимум 7. Теперь ты знаешь, как это считалось.", "cases": [{"args": ["family\thap\tloci\tintact\tpartial\tpseudogene_like\tuncertain\nB2M\thap1\t1\t1\t0\t0\t0\nB2M\thap2\t1\t1\t0\t0\t0\nCD1\thap1\t16\t3\t12\t1\t0\nCD1\thap2\t23\t6\t15\t2\t0\nCLEC12A\thap1\t1\t0\t1\t0\t0\nCLEC12A\thap2\t1\t0\t1\t0\t0\nCLEC2D\thap1\t3\t0\t2\t0\t1\nCLEC2D\thap2\t2\t0\t1\t0\t1\nCLEC4E\thap1\t1\t0\t1\t0\t0\nCLEC4E\thap2\t1\t0\t1\t0\t0\nKIR\thap1\t1\t0\t1\t0\t0\nKIR\thap2\t1\t0\t1\t0\t0\nKLRC\thap1\t2\t0\t0\t0\t2\nKLRC\thap2\t4\t1\t1\t2\t0\nKLRD1\thap1\t1\t0\t1\t0\t0\nKLRD1\thap2\t1\t1\t0\t0\t0\nKLRF\thap1\t2\t1\t1\t0\t0\nKLRF\thap2\t2\t1\t1\t0\t0\nKLRG2\thap1\t2\t1\t0\t1\t0\nKLRG2\thap2\t2\t1\t0\t1\t0\nKLRK1\thap1\t2\t1\t0\t1\t0\nKLRK1\thap2\t3\t1\t0\t2\t0\nLILR\thap1\t20\t8\t7\t2\t3\nLILR\thap2\t23\t8\t11\t2\t2\nMHC-I\thap1\t34\t2\t26\t6\t0\nMHC-I\thap2\t40\t1\t33\t6\t0\nMR1\thap1\t1\t1\t0\t0\t0\nMR1\thap2\t1\t1\t0\t0\t0\nNCR1\thap1\t1\t1\t0\t0\t0\nNCR1\thap2\t1\t1\t0\t0\t0\nNCR2\thap1\t0\t0\t0\t0\t0\nNCR2\thap2\t1\t0\t0\t1\t0\nNCR3\thap1\t1\t0\t1\t0\t0\nNCR3\thap2\t1\t0\t1\t0\t0\nTAP1\thap1\t1\t1\t0\t0\t0\nTAP1\thap2\t1\t1\t0\t0\t0\nTAP2\thap1\t3\t0\t2\t0\t1\nTAP2\thap2\t3\t0\t2\t0\t1\n"], "expected": {"NCR1": 0, "KLRG2": 0, "NCR3": 0, "LILR": 3, "KIR": 0, "CLEC12A": 0, "KLRC": 2, "MR1": 0, "TAP1": 0, "KLRD1": 0, "KLRF": 0, "B2M": 0, "NCR2": 1, "KLRK1": 1, "MHC-I": 6, "CLEC2D": -1, "CLEC4E": 0, "TAP2": 0, "CD1": 7}, "hidden": false}, {"args": ["family\thap\tloci\tintact\tpartial\tpseudogene_like\tuncertain\nB2M\thap1\t2\t0\t2\t0\t0\nB2M\thap2\t2\t0\t2\t0\t0\nCD1\thap1\t3\t0\t2\t1\t0\nCD1\thap2\t3\t0\t2\t1\t0\nCLEC12A\thap1\t1\t0\t1\t0\t0\nCLEC12A\thap2\t1\t0\t1\t0\t0\nCLEC2D\thap1\t3\t1\t1\t0\t1\nCLEC2D\thap2\t3\t1\t1\t0\t1\nCLEC4E\thap1\t1\t0\t1\t0\t0\nCLEC4E\thap2\t1\t0\t1\t0\t0\nFCAR\thap1\t2\t0\t1\t1\t0\nFCAR\thap2\t2\t0\t1\t1\t0\nKLRB1\thap1\t1\t0\t1\t0\t0\nKLRB1\thap2\t1\t0\t1\t0\t0\nKLRC\thap1\t9\t1\t6\t1\t1\nKLRC\thap2\t7\t1\t6\t0\t0\nKLRD1\thap1\t4\t2\t1\t1\t0\nKLRD1\thap2\t3\t2\t1\t0\t0\nKLRF\thap1\t2\t1\t1\t0\t0\nKLRF\thap2\t2\t1\t1\t0\t0\nKLRG1\thap1\t1\t1\t0\t0\t0\nKLRG1\thap2\t1\t1\t0\t0\t0\nKLRG2\thap1\t1\t1\t0\t0\t0\nKLRG2\thap2\t1\t1\t0\t0\t0\nKLRK1\thap1\t1\t1\t0\t0\t0\nKLRK1\thap2\t1\t1\t0\t0\t0\nLAIR1\thap1\t2\t2\t0\t0\t0\nLAIR1\thap2\t2\t2\t0\t0\t0\nLILR\thap1\t11\t1\t7\t3\t0\nLILR\thap2\t9\t1\t8\t0\t0\nMHC-I\thap1\t18\t0\t16\t2\t0\nMHC-I\thap2\t15\t0\t14\t1\t0\nMR1\thap1\t2\t0\t1\t1\t0\nMR1\thap2\t2\t0\t1\t1\t0\nNCR1\thap1\t1\t1\t0\t0\t0\nNCR1\thap2\t1\t1\t0\t0\t0\nNCR2\thap1\t3\t0\t0\t2\t1\nNCR2\thap2\t3\t0\t0\t3\t0\nNCR3\thap1\t1\t0\t0\t1\t0\nNCR3\thap2\t1\t0\t0\t1\t0\nTAP1\thap1\t1\t1\t0\t0\t0\nTAP1\thap2\t1\t1\t0\t0\t0\nTAP2\thap1\t2\t1\t1\t0\t0\nTAP2\thap2\t2\t1\t1\t0\t0\n"], "expected": {"NCR1": 0, "KLRG2": 0, "NCR3": 0, "LILR": -2, "CLEC12A": 0, "KLRC": -2, "MR1": 0, "TAP1": 0, "KLRD1": -1, "KLRF": 0, "FCAR": 0, "B2M": 0, "NCR2": 0, "KLRK1": 0, "KLRB1": 0, "LAIR1": 0, "MHC-I": -3, "CLEC2D": 0, "CLEC4E": 0, "TAP2": 0, "KLRG1": 0, "CD1": 0}, "hidden": true}]}, {"id": "perm", "track": "Статистика", "title": "Точный перестановочный тест", "mod": "stats", "fn": "exact_perm_p", "tol": 1e-09, "bio": "При малых выборках p-значение можно получить, перебрав все способы раздать метки групп. Это честнее, чем верить t-критерию.", "statement": "<p>Даны две группы чисел <code>a</code> и <code>b</code>. Перебери все способы выбрать из объединённых данных группу размера <code>len(a)</code> (<code>itertools.combinations</code>), для каждого посчитай разницу средних «остаток минус выбранная» и верни долю способов, где модуль разницы не меньше модуля наблюдаемой разницы <code>mean(b) − mean(a)</code>. Для сравнения чисел с плавающей точкой используй допуск 1e-12.</p>", "starter": "import itertools\n\n\ndef exact_perm_p(a, b):\n    pass\n", "solution": "import itertools\n\n\ndef exact_perm_p(a, b):\n    pooled = list(a) + list(b)\n    total_sum = sum(pooled)\n    n = len(pooled)\n    mean = lambda x: sum(x) / len(x)\n    observed = abs(mean(b) - mean(a))\n    count = total = 0\n    for idx in itertools.combinations(range(n), len(a)):\n        group_a = [pooled[i] for i in idx]\n        rest_sum = total_sum - sum(group_a)\n        diff = abs(rest_sum / (n - len(a)) - sum(group_a) / len(a))\n        total += 1\n        if diff >= observed - 1e-12:\n            count += 1\n    return count / total\n", "hints": ["itertools.combinations(range(n), k) даёт все наборы индексов.", "Остаток — те, кого нет в выбранном наборе.", "Сравнивай модули разниц с допуском: diff >= observed - 1e-12."], "why": "Для 3 против 3 всего 20 вариантов, поэтому самое малое достижимое p равно 0,1. Это и есть мощность при малых группах.", "cases": [{"args": [[1, 2], [3, 4]], "expected": 0.3333333333333333, "hidden": false}, {"args": [[12, 15, 11], [18, 17, 21]], "expected": 0.1, "hidden": false}, {"args": [[1, 1, 1], [1, 1, 1]], "expected": 1.0, "hidden": false}, {"args": [[5, 6, 7, 8], [1, 2, 3, 4]], "expected": 0.02857142857142857, "hidden": true}]}, {"id": "bh", "track": "Статистика", "title": "Поправка Бенджамини–Хохберга", "mod": "stats", "fn": "bh_adjust", "tol": 1e-09, "bio": "Тысячи генов проверяются сразу, и без поправки «значимыми» оказываются сотни случайных. BH контролирует долю ложных находок.", "statement": "<p>Даны p-значения. Верни скорректированные значения (q) в исходном порядке. Алгоритм: отсортируй по возрастанию, для места <code>i</code> (с 1) возьми <code>p·m/i</code>, затем пройди с конца и сделай значения монотонными, взяв минимум с правым соседом. Не превышай 1.</p>", "starter": "def bh_adjust(pvals):\n    pass\n", "solution": "def bh_adjust(pvals):\n    m = len(pvals)\n    order = sorted(range(m), key=lambda i: pvals[i])\n    adjusted = [0.0] * m\n    running = 1.0\n    for rank in range(m, 0, -1):\n        i = order[rank - 1]\n        running = min(running, pvals[i] * m / rank)\n        adjusted[i] = running\n    return adjusted\n", "hints": ["Порядок: sorted(range(m), key=lambda i: pvals[i]).", "Для места rank значение p * m / rank.", "Иди от большего ранга к меньшему и держи running = min(running, ...)."], "why": "Так считают padj в DESeq2 и в других пакетах. В модуле статистики ты видела, как BH находит больше настоящих эффектов, чем Бонферрони.", "cases": [{"args": [[0.01, 0.02, 0.03, 0.04, 0.05]], "expected": [0.049999999999999996, 0.049999999999999996, 0.049999999999999996, 0.05, 0.05], "hidden": false}, {"args": [[0.001, 0.04, 0.03, 0.5]], "expected": [0.004, 0.05333333333333334, 0.05333333333333334, 0.5], "hidden": false}, {"args": [[0.5]], "expected": [0.5], "hidden": false}, {"args": [[0.9, 0.0001, 0.2, 0.0005, 0.04]], "expected": [0.9, 0.0005, 0.25, 0.00125, 0.06666666666666667], "hidden": true}]}, {"id": "poisson", "track": "Статистика", "title": "Пуассон и покрытие", "mod": "stats", "fn": "poisson_cdf", "tol": 1e-12, "bio": "Сколько позиций генома останется почти без прочтений при среднем покрытии 30×? Это вопрос про распределение Пуассона.", "statement": "<p>Верни вероятность того, что случайная величина Пуассона со средним <code>lam</code> не больше <code>k</code>: сумма <code>e<sup>−λ</sup>·λ<sup>i</sup>/i!</code> по i от 0 до k. Используй модуль <code>math</code>.</p>", "starter": "import math\n\n\ndef poisson_cdf(k, lam):\n    pass\n", "solution": "import math\n\n\ndef poisson_cdf(k, lam):\n    term = math.exp(-lam)\n    total = term\n    for i in range(1, k + 1):\n        term *= lam / i\n        total += term\n    return total\n", "hints": ["Первое слагаемое: math.exp(-lam).", "Каждое следующее получается умножением на lam / i.", "Не считай факториалы напрямую: слагаемые станут огромными."], "why": "При 30× по Пуассону меньше 10× получается около 7·10⁻⁶ позиций. Реальных плохо покрытых позиций больше: покрытие неровное.", "cases": [{"args": [9, 30], "expected": 7.121750862815578e-06, "hidden": false}, {"args": [9, 10], "expected": 0.45792971447185227, "hidden": false}, {"args": [0, 1], "expected": 0.36787944117144233, "hidden": false}, {"args": [20, 20], "expected": 0.5590925842313255, "hidden": true}, {"args": [5, 0.5], "expected": 0.9999858350626777, "hidden": true}]}, {"id": "boot", "track": "Статистика", "title": "Бутстрэп медианы", "mod": "stats", "fn": "bootstrap_median_ci", "tol": 1e-12, "bio": "Бутстрэп даёт доверительный интервал без предположений о распределении. Для воспроизводимости генератор случайных чисел задан явно.", "statement": "<p>Создай <code>rng = random.Random(seed)</code>. Сделай <code>n</code> повторов: каждый раз возьми выборку той же длины как <code>[rng.choice(x) for _ in x]</code> и посчитай <code>statistics.median</code>. Отсортируй медианы и верни кортеж <code>(meds[int(0.025*n)], meds[int(0.975*n)])</code>. Порядок вызовов rng важен: тест ждёт именно эту схему.</p>", "starter": "import random\nimport statistics\n\n\ndef bootstrap_median_ci(x, n, seed):\n    pass\n", "solution": "import random\nimport statistics\n\n\ndef bootstrap_median_ci(x, n, seed):\n    rng = random.Random(seed)\n    meds = sorted(statistics.median([rng.choice(x) for _ in x]) for _ in range(n))\n    return (meds[int(0.025 * n)], meds[int(0.975 * n)])\n", "hints": ["Один повтор: [rng.choice(x) for _ in x].", "statistics.median считает медиану.", "Индексы квантилей: int(0.025 * n) и int(0.975 * n)."], "why": "Видишь: интервал для медианы узкий, хотя в данных есть выброс. Для среднего он был бы шире.", "cases": [{"args": [[3.1, 2.4, 5.8, 4.4, 3.9, 12.5, 2.9, 3.3, 4.1, 3.6], 1000, 7], "expected": [3.0999999999999996, 5.1], "hidden": false}, {"args": [[1, 2, 3, 4, 5], 400, 1], "expected": [1, 5], "hidden": false}, {"args": [[10, 10, 10, 11], 200, 3], "expected": [10.0, 11.0], "hidden": true}]}];
+
+/* ---------- MAP of tasks and CODE-READING list ---------- */
+const MAP=[
+ {q:'Сколько копий у гена или семейства генов в геноме?',
+  data:'Сборка генома (FASTA) и белки-запросы (FASTA).',
+  method:'Выравнивание белка с геномом, отбор хитов, группировка хитов в локусы, оценка целости (сдвиги, стопы).',
+  tools:'miniprot, tblastn (BLAST); сборки и белки из NCBI Datasets.',
+  out:'Таблица локусов: координаты, статус (целый, частичный, псевдоген).',
+  check:'Просмотр локусов в браузере генома, повтор при другом пороге чувствительности, данные РНК.',
+  trap:'Схлопнутые повторы в сборке, зависимость числа от порога и от набора запросов. «Не найден» не значит «нет гена».',
+  mods:[['copies','Семейства генов и копии'],['alignment','Выравнивание и поиск генов']],tasks:['translate','premature','hapdiff']},
+ {q:'Чем отличаются два генома или два гаплотипа одной особи?',
+  data:'Две сборки (FASTA), лучше хромосомного уровня.',
+  method:'Выравнивание геном-с-геномом по регионам, поиск пропусков, вставок, инверсий.',
+  tools:'minimap2 (режим asm5 или asm10), MUMmer.',
+  out:'Файл выравнивания (PAF) и таблица различий.',
+  check:'Края контигов и N-пробелы, перекартирование исходных длинных прочтений на оба гаплотипа.',
+  trap:'Ошибки сборки выглядят как биологические различия. Фаза может переключаться.',
+  mods:[['assembly','Сборка генома'],['copies','Семейства генов и копии']],tasks:['overlap','cigar']},
+ {q:'Какие варианты есть у образца?',
+  data:'Прочтения (FASTQ) и референсный геном.',
+  method:'Выравнивание, пометка дубликатов, вызов вариантов, фильтрация.',
+  tools:'BWA-MEM2 или minimap2, samtools, GATK HaplotypeCaller, bcftools.',
+  out:'Файл VCF с вариантами и генотипами.',
+  check:'Ti/Tv, доля гетерозигот, пол по X/Y, контаминация, покрытие.',
+  trap:'Неверный референс, мало покрытия, слишком мягкие фильтры.',
+  mods:[['formats','Форматы файлов'],['pipelines','Пайплайны']],tasks:['vcf','het','cigar','meanq']},
+ {q:'Какие варианты связаны с признаком или болезнью?',
+  data:'VCF когорты, фенотипы, сведения о происхождении.',
+  method:'Ассоциативный анализ: логистическая регрессия, регрессия Фёрса для редких вариантов, SKAT-O для наборов редких вариантов.',
+  tools:'PLINK; R: SKAT, logistf.',
+  out:'Таблица p-значений и размеров эффекта.',
+  check:'QQ-график, поправка на множественные сравнения, главные компоненты происхождения.',
+  trap:'Структура популяции, малые выборки, множественные сравнения.',
+  mods:[['stats','Статистика для омики']],tasks:['bh','perm']},
+ {q:'Какие гены экспрессируются по-разному между условиями?',
+  data:'Таблица счётов RNA-seq (гены × образцы) и план эксперимента.',
+  method:'Модель на отрицательном биномиальном распределении, поправка Бенджамини–Хохберга.',
+  tools:'DESeq2, edgeR (R); pydeseq2 (Python).',
+  out:'Таблица log2FC и скорректированных p (padj) по генам.',
+  check:'PCA образцов, MA-график, учёт батча.',
+  trap:'При n = 3 мощность низка. Если батч совпал с группой, эффекты неразделимы.',
+  mods:[['stats','Статистика для омики']],tasks:['bh','boot']},
+ {q:'Какие клетки есть в образце и чем они отличаются?',
+  data:'Матрица scRNA-seq (клетки × гены).',
+  method:'Контроль качества, нормализация, PCA, граф соседей, кластеризация, маркеры, аннотация.',
+  tools:'Scanpy (Python), Seurat (R).',
+  out:'Кластеры клеток, списки маркеров, метки типов.',
+  check:'Независимые маркеры или белки, референсные атласы, несколько значений resolution.',
+  trap:'Метки по маркерам хрупкие, UMAP не количественный, клетки одного животного не независимы.',
+  mods:[['singlecell','Одноклеточные данные'],['stats','Статистика для омики']],tasks:[]},
+ {q:'Хорошая ли получилась сборка?',
+  data:'Сборка (FASTA) и исходные прочтения.',
+  method:'Связность (N50), полнота набора ожидаемых генов (BUSCO), точность по k-мерам (QV).',
+  tools:'BUSCO, merqury, QUAST.',
+  out:'Отчёт с набором метрик.',
+  check:'Смотреть несколько метрик вместе и сравнивать с родственной сборкой.',
+  trap:'Высокий N50 не гарантирует правильность.',
+  mods:[['assembly','Сборка генома']],tasks:['n50','kmer']},
+ {q:'Как гены и виды связаны эволюционно?',
+  data:'Последовательности ортологов и паралогов.',
+  method:'Множественное выравнивание, построение дерева, сопоставление с деревом видов.',
+  tools:'MAFFT, IQ-TREE.',
+  out:'Филогенетическое дерево с поддержкой ветвей.',
+  check:'Поддержка ветвей (bootstrap), проверка выравнивания глазами.',
+  trap:'Путаница ортологов и паралогов, плохое выравнивание.',
+  mods:[['interview','Собеседование (ортолог и паралог)']],tasks:['sw'],
+  note:'Модуля про филогению в тренажёре пока нет, есть только определения и задача на выравнивание.'},
+ {q:'Достаточно ли у меня данных?',
+  data:'Дизайн эксперимента и ожидаемый размер эффекта.',
+  method:'Оценка мощности и нужного числа образцов или покрытия, чаще симуляцией.',
+  tools:'Python или R, любой скрипт-симулятор.',
+  out:'Нужное число образцов, покрытие.',
+  check:'Считать на реалистичных, а не оптимистичных эффектах.',
+  trap:'Опираться на самый большой эффект из литературы.',
+  mods:[['stats','Статистика для омики']],tasks:['poisson','perm']},
+ {q:'Где взять публичные данные?',
+  data:'Название вида, нужный тип данных.',
+  method:'Поиск по базам и скачивание через сайт или командную строку.',
+  tools:'NCBI Datasets, SRA Toolkit, ENA, Ensembl.',
+  out:'Файлы сборок, аннотаций, прочтений с метаданными.',
+  check:'Версии сборки и аннотации, одинаковый ли BioSample у hap1 и hap2.',
+  trap:'Разные версии сборок и аннотаций, перепутанные образцы.',
+  mods:[['assembly','Сборка генома']],tasks:[]}
+];
+INIT.map=function(){
+  const box=$('#map-list');
+  MAP.forEach(m=>{
+    const d=document.createElement('details');d.className='qa';
+    const rows=[['Данные',m.data],['Метод',m.method],['Инструменты',m.tools],['Результат',m.out],['Как проверить',m.check],['Ловушка',m.trap]];
+    let h='<summary>'+esc(m.q)+'</summary><div><dl style="margin:0">'+rows.map(r=>'<dt style="font-weight:700;margin-top:.6rem">'+r[0]+'</dt><dd style="margin:0">'+esc(r[1])+'</dd>').join('')+'</dl>';
+    if(m.note)h+='<p class="meta" style="margin-top:.6rem">'+esc(m.note)+'</p>';
+    h+='<p style="margin-top:.8rem"><b>Где в тренажёре:</b> '+m.mods.map(x=>'<a href="#'+x[0]+'">'+esc(x[1])+'</a>').join(', ')+'</p>';
+    if(m.tasks.length)h+='<div class="field-inline">'+m.tasks.map(id=>{const t=TASKS.find(x=>x.id===id);return t?'<button type="button" class="chip" data-task="'+id+'">Задача: '+esc(t.title)+'</button>':''}).join('')+'</div>';
+    d.innerHTML=h+'</div>';box.appendChild(d)});
+  box.addEventListener('click',e=>{const b=e.target.closest('[data-task]');if(b)openTask(b.dataset.task)})};
+
+INIT.code=function(){
+  const box=$('#code-list');
+  if(!Array.isArray(CODEREAD)||!CODEREAD.length){box.innerHTML='<p class="note warn">Подборка репозиториев ещё собирается.</p>';return}
+  const link=(u,t)=>u?'<a href="'+esc(u)+'" target="_blank" rel="noopener">'+esc(t)+'</a>':esc(t);
+  CODEREAD.forEach(r=>{
+    const s=document.createElement('section');s.className='bench';
+    const p=r.paper||{};
+    let h='<h3>'+link(r.repo_url,r.name)+'</h3><p class="hint">'+esc(r.topic||'')+'</p>';
+    h+='<p><b>Статья:</b> '+(p.title?esc(p.title)+', '+esc(p.journal||'')+' '+esc(p.year||'')+(p.doi?' ('+link('https://doi.org/'+p.doi,'doi:'+p.doi)+')':''):'не проверено')+'</p>';
+    h+='<p><b>Язык:</b> '+esc(r.language||'?')+' · <b>лицензия:</b> '+esc(r.license||'не указана')+' · <b>сложность:</b> '+esc(r.difficulty||'?')+' из 3</p>';
+    h+='<p><b>Что читать:</b> '+(r.permalink?link(r.permalink,r.file_path+(r.line_range?' (строки '+r.line_range+')':'')):esc(r.file_path||'не указано'))+'</p>';
+    if(r.what)h+='<p>'+esc(r.what)+'</p>';
+    if(r.skill)h+='<p class="meta">Чему учит: '+esc(r.skill)+'</p>';
+    if(Array.isArray(r.questions))h+=r.questions.map(q=>'<details class="qa"><summary>'+esc(q.q)+'</summary><div><p>'+esc(q.a)+'</p>'+(q.lines?'<p class="meta">Строки: '+esc(q.lines)+'</p>':'')+'</div></details>').join('');
+    if(Array.isArray(r.unverified)&&r.unverified.length)h+='<p class="note warn"><b>Не проверено</b>'+esc(r.unverified.join('; '))+'</p>';
+    s.innerHTML=h;box.appendChild(s)})};
+
+/* ---------- PRACTICE: Python in the browser (Pyodide in a Web Worker) ---------- */
+const PYO='https://cdn.jsdelivr.net/pyodide/v0.26.4/full/';
+let pendingTask=null,selectTaskFn=null;
+function openTask(id){pendingTask=id;if(currentId()==='practice'&&selectTaskFn)selectTaskFn(id);else location.hash='practice'}
+
+INIT.practice=function(){
+  const lst=$('#prac-list'),panel=$('#prac-task'),code=$('#prac-code');
+  let cur=null,hintN=0,attempted=false,worker=null,readyP=null,jobId=0,jobs=new Map(),resetArm=null;
+  const solved=id=>store.get('gt:solved:'+id)==='1';
+  function progress(){const n=TASKS.filter(t=>solved(t.id)).length;$('#prac-progress').textContent='Решено: '+n+' из '+TASKS.length;if(n>=Math.ceil(TASKS.length*.7))markDone('practice')}
+  function drawList(){clearEl(lst);
+    [...new Set(TASKS.map(t=>t.track))].forEach(tr=>{
+      const h=document.createElement('h3');h.textContent=tr;lst.appendChild(h);
+      const row=document.createElement('div');row.className='field-inline';
+      TASKS.filter(t=>t.track===tr).forEach(t=>{const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('aria-pressed',cur&&cur.id===t.id?'true':'false');b.textContent=t.title+(solved(t.id)?' (решена)':'');b.addEventListener('click',()=>select(t.id));row.appendChild(b)});
+      lst.appendChild(row)})}
+  function short(s,n){s=String(s);return s.length>n?s.slice(0,n)+'…':s}
+  function select(id){
+    cur=TASKS.find(t=>t.id===id);if(!cur)return;hintN=0;attempted=false;
+    panel.hidden=false;$('#prac-title').textContent=cur.title;$('#prac-bio').textContent='Зачем в биологии: '+cur.bio;
+    $('#prac-statement').innerHTML=cur.statement;
+    const ex=cur.cases.find(c=>!c.hidden)||cur.cases[0];
+    $('#prac-example').textContent='Вход: '+short(JSON.stringify(ex.args).slice(1,-1),160)+'  →  ожидается: '+short(JSON.stringify(ex.expected),160);
+    code.value=store.get('gt:code:'+id)||cur.starter;
+    $('#prac-hints').innerHTML='';$('#prac-out').innerHTML='';$('#prac-solution').hidden=true;$('#prac-solution').innerHTML='';
+    $('#prac-hint').textContent='Подсказка';$('#prac-hint').disabled=false;$('#prac-sol').disabled=true;$('#prac-state').textContent=solved(id)?'Эта задача решена.':'';
+    drawList();panel.scrollIntoView({block:'start',behavior:'smooth'})}
+  selectTaskFn=select;
+
+  /* worker */
+  function startWorker(){
+    const src="importScripts('"+PYO+"pyodide.js');\nconst HARNESS="+JSON.stringify(HARNESS)+";\nconst ready=loadPyodide({indexURL:'"+PYO+"'});\nready.then(()=>self.postMessage({type:'ready'}),e=>self.postMessage({type:'fail',error:String(e)}));\nself.onmessage=async e=>{const m=e.data;try{const py=await ready;py.globals.set('USER_CODE',m.code);py.globals.set('FN',m.fn);py.globals.set('CASES_JSON',m.cases);py.globals.set('TOL',m.tol);const out=await py.runPythonAsync(HARNESS);self.postMessage({type:'done',id:m.id,out:out})}catch(err){self.postMessage({type:'done',id:m.id,error:String(err)})}};";
+    const url=URL.createObjectURL(new Blob([src],{type:'text/javascript'}));
+    worker=new Worker(url);
+    readyP=new Promise((res,rej)=>{
+      worker.onmessage=e=>{const d=e.data;
+        if(d.type==='ready')res();
+        else if(d.type==='fail')rej(new Error(d.error));
+        else if(d.type==='done'){const j=jobs.get(d.id);if(j){jobs.delete(d.id);clearTimeout(j.timer);j.resolve(d)}}};
+      worker.onerror=ev=>rej(new Error('не удалось загрузить Python: '+(ev.message||'нет сети')))})}
+  function kill(){if(worker){worker.terminate();worker=null;readyP=null}}
+  async function execute(cases){
+    if(!worker)startWorker();
+    $('#prac-state').textContent='Загружаю Python (первый раз до минуты, дальше быстро)…';
+    try{await readyP}catch(err){kill();throw err}
+    $('#prac-state').textContent='Запускаю…';
+    const id=++jobId;
+    return new Promise(resolve=>{
+      const timer=setTimeout(()=>{jobs.delete(id);kill();resolve({timeout:true})},10000);
+      jobs.set(id,{timer,resolve});
+      worker.postMessage({id:id,code:code.value,fn:cur.fn,cases:JSON.stringify(cases),tol:cur.tol})})}
+
+  function render(res,all){
+    const out=$('#prac-out');
+    if(res.timeout){out.innerHTML='<div class="fb no"><b class="no">Код работает дольше 10 секунд.</b> Похоже на бесконечный цикл или слишком медленное решение.</div>';return false}
+    if(res.error){out.innerHTML='<div class="fb no"><b class="no">Ошибка запуска.</b></div><pre class="readout">'+esc(res.error)+'</pre>';return false}
+    const r=JSON.parse(res.out);let h='';
+    if(r.error){h+='<div class="fb no"><b class="no">Ошибка в коде.</b></div><pre class="readout">'+esc(r.error)+'</pre>'}
+    const okN=r.tests.filter(t=>t.ok).length;
+    if(r.tests.length){h+='<p class="score">Пройдено '+okN+' из '+r.tests.length+'.</p>';
+      r.tests.forEach((t,i)=>{
+        const head=t.hidden?'Скрытый тест '+(i+1):'Тест '+(i+1);
+        if(t.ok)h+='<div class="fb ok"><b class="ok">'+head+': пройден.</b></div>';
+        else{h+='<div class="fb no"><b class="no">'+head+': не пройден.</b>';
+          if(!t.hidden)h+='<br>Вход: <code>'+esc(t.args)+'</code><br>Ожидалось: <code>'+esc(t.want)+'</code><br>Получено: <code>'+esc(t.got===null?'(ошибка)':t.got)+'</code>';
+          if(t.error)h+='<pre class="readout">'+esc(t.error)+'</pre>';
+          h+='</div>'}
+        h+='<div style="height:6px"></div>'})}
+    if(r.stdout)h+='<p><b>Вывод print():</b></p><pre class="readout">'+esc(r.stdout)+'</pre>';
+    out.innerHTML=h;
+    return !r.error&&r.tests.length>0&&okN===r.tests.length}
+
+  async function go(all){
+    if(!cur)return;attempted=true;$('#prac-sol').disabled=false;store.set('gt:code:'+cur.id,code.value);
+    const btns=[$('#prac-run'),$('#prac-check')];btns.forEach(b=>{b.disabled=true});
+    let res;
+    try{res=await execute(all?cur.cases:cur.cases.filter(c=>!c.hidden))}
+    catch(err){res={error:String(err.message||err)}}
+    btns.forEach(b=>{b.disabled=false});$('#prac-state').textContent='';
+    const ok=render(res,all);
+    if(ok&&all){store.set('gt:solved:'+cur.id,'1');$('#prac-state').textContent='Задача решена. '+cur.why;drawList();progress()}
+    else if(ok){$('#prac-state').textContent='Примеры прошли. Нажми «Проверить всё»: там ещё скрытые тесты.'}}
+  $('#prac-run').addEventListener('click',()=>go(false));
+  $('#prac-check').addEventListener('click',()=>go(true));
+  code.addEventListener('input',()=>{if(cur)store.set('gt:code:'+cur.id,code.value)});
+  code.addEventListener('keydown',e=>{
+    if(e.key==='Tab'&&!e.shiftKey){e.preventDefault();const s=code.selectionStart;code.value=code.value.slice(0,s)+'    '+code.value.slice(code.selectionEnd);code.selectionStart=code.selectionEnd=s+4}
+    else if(e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();go(false)}});
+  $('#prac-hint').addEventListener('click',()=>{
+    if(!cur||hintN>=cur.hints.length)return;const box=$('#prac-hints');const p=document.createElement('p');p.className='note';p.innerHTML='<b>Подсказка '+(hintN+1)+'.</b> '+esc(cur.hints[hintN]);box.appendChild(p);hintN++;
+    $('#prac-hint').textContent='Подсказка ('+hintN+' из '+cur.hints.length+')';if(hintN>=cur.hints.length)$('#prac-hint').disabled=true});
+  $('#prac-sol').addEventListener('click',()=>{
+    if(!cur)return;const box=$('#prac-solution');box.hidden=false;
+    box.innerHTML='<figure class="code"><figcaption><span>Эталонное решение<small>одно из возможных</small></span></figcaption><pre><code>'+esc(cur.solution)+'</code></pre></figure>'});
+  $('#prac-reset').addEventListener('click',e=>{
+    if(!cur)return;const b=e.currentTarget;
+    if(resetArm){clearTimeout(resetArm);resetArm=null;b.textContent='Сбросить код';code.value=cur.starter;store.set('gt:code:'+cur.id,cur.starter)}
+    else{b.textContent='Точно сбросить?';resetArm=setTimeout(()=>{resetArm=null;b.textContent='Сбросить код'},3000)}});
+  drawList();progress();
+  if(pendingTask){select(pendingTask);pendingTask=null}};
 
 boot();
 })();

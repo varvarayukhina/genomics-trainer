@@ -1,0 +1,42 @@
+<article class="view" id="view-practice" data-title="Практикум с кодом" hidden>
+  <h1>Практикум с кодом</h1>
+  <p class="lede">Здесь ты пишешь настоящий код на Python, нажимаешь «Проверить» и получаешь результат тестов. Каждая задача — маленький кусок реального анализа: GC-состав, N50, CIGAR, фильтр VCF, поиск преждевременного стопа, перестановочный тест, поправка BH.</p>
+
+  <div class="note"><b>Как это работает</b>
+  Python (версия 3.12) запускается прямо в браузере через Pyodide. При первом запуске он скачает около 12 МБ, дальше работает из кэша. Нужен интернет и открытие страницы по адресу на GitHub Pages: в закрытом просмотрщике артефакта код не запустится. Код решения сохраняется в этом браузере.</div>
+
+  <h2>Задачи</h2>
+  <p id="prac-progress" class="score" aria-live="polite"></p>
+  <div id="prac-list"></div>
+
+  <section id="prac-task" class="bench" aria-live="polite" hidden>
+    <h3 id="prac-title" style="margin-top:0"></h3>
+    <p id="prac-bio" class="hint"></p>
+    <div id="prac-statement"></div>
+    <p><b>Пример.</b> <span id="prac-example" class="dna"></span></p>
+    <label for="prac-code">Твой код</label>
+    <textarea id="prac-code" rows="14" spellcheck="false" autocapitalize="off" autocomplete="off" style="tab-size:4"></textarea>
+    <div class="row field-inline">
+      <button type="button" id="prac-run" class="primary">Проверить на примерах</button>
+      <button type="button" id="prac-check">Проверить всё</button>
+      <button type="button" id="prac-hint">Подсказка</button>
+      <button type="button" id="prac-sol" disabled>Показать решение</button>
+      <button type="button" id="prac-reset">Сбросить код</button>
+    </div>
+    <p class="hint" id="prac-state"></p>
+    <div id="prac-hints"></div>
+    <div id="prac-out"></div>
+    <div id="prac-solution" hidden></div>
+  </section>
+
+  <h2>Как решать</h2>
+  <ul>
+    <li>Сначала прочитай пример и вручную пойми, что должно получиться. Потом пиши код.</li>
+    <li>Если тест не прошёл, смотри «Ожидалось» и «Получено»: расхождение подсказывает, где ошибка.</li>
+    <li><code>print()</code> работает: вывод покажется ниже.</li>
+    <li>Скрытые тесты проверяют крайние случаи (пустая строка, один элемент, регистр). Они нужны, чтобы нельзя было подогнать под примеры.</li>
+    <li>Подсказки открываются по одной. Решение появляется после первой проверки: сначала попробуй сама.</li>
+  </ul>
+
+  <div class="pager"><a class="btn" href="#pipelines">Назад: пайплайны</a><a class="btn primary" href="#code">Дальше: читать чужой код</a></div>
+</article>

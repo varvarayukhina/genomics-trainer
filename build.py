@@ -11,8 +11,8 @@ from pygments.lexers import get_lexer_by_name
 
 ROOT = Path(__file__).parent
 PILOT_DIR = ROOT / "data" / "pilot"
-VIEWS = ["v0_start", "v1_genome", "v2_assembly", "v3_formats", "v4_alignment", "v5_copies",
-         "v6_stats", "v7_singlecell", "v8_pipelines", "v9_interview", "v10_glossary"]
+VIEWS = ["v0_start", "v1b_map", "v1_genome", "v2_assembly", "v3_formats", "v4_alignment", "v5_copies",
+         "v6_stats", "v7_singlecell", "v8_pipelines", "v8b_practice", "v8c_code", "v9_interview", "v10_glossary"]
 EXT = {"python": "py", "r": "R", "bash": "sh"}
 NOTE = {  # подпись под названием примера
     "deseq2": "R 4.4.1, DESeq2 1.46: запущено",
@@ -76,6 +76,11 @@ def pilot_json() -> str:
     return json.dumps({"pairs": pairs}, ensure_ascii=False)
 
 
+def coderead_json() -> str:
+    f = ROOT / "data" / "code_reading.json"
+    return f.read_text(encoding="utf-8").replace("</", "<\\/") if f.exists() else "[]"
+
+
 def expand(text: str) -> str:
     text = re.sub(r"<!--code:([\w]+)\|(\w+)\|([^>]*?)-->", lambda m: code_figure(m[1], m[2], m[3]), text)
     return text.replace("<!--table:pilot_assemblies-->", pilot_table())
@@ -86,8 +91,8 @@ def main() -> None:
     parts = [(src / "head.html").read_text(encoding="utf-8"), (src / "shell_open.html").read_text(encoding="utf-8")]
     parts += [expand((src / f"{v}.html").read_text(encoding="utf-8")) for v in VIEWS]
     parts.append((src / "shell_close.html").read_text(encoding="utf-8"))
-    js = "\n".join((ROOT / "js" / f).read_text(encoding="utf-8") for f in ("data.js", "core.js", "widgets1.js", "widgets2.js"))
-    parts.append(f"<script>\n(function(){{\n'use strict';\nconst PILOT={pilot_json()};\n{js}\nboot();\n}})();\n</script>\n")
+    js = "\n".join((ROOT / "js" / f).read_text(encoding="utf-8") for f in ("data.js", "core.js", "widgets1.js", "widgets2.js", "tasks.js", "map.js", "practice.js"))
+    parts.append(f"<script>\n(function(){{\n'use strict';\nconst PILOT={pilot_json()};\nconst HARNESS={json.dumps((ROOT / "src" / "harness.py").read_text(encoding="utf-8"), ensure_ascii=False)};\nconst CODEREAD={coderead_json()};\n{js}\nboot();\n}})();\n</script>\n")
     (ROOT / "site.html").write_text("".join(parts), encoding="utf-8")
     print("site.html:", (ROOT / "site.html").stat().st_size, "bytes")
     # index.html для GitHub Pages: тот же скелет, который добавляет публикация артефакта

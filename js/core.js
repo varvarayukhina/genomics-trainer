@@ -39,7 +39,7 @@ function renderNav(){
 function show(){
   const id=currentId();
   $$('.view').forEach(v=>{v.hidden=v.id!=='view-'+id});
-  const noQuiz=!$('#view-'+id+' .quiz');if(noQuiz&&id!=='start')markDone(id);
+  const noQuiz=!$('#view-'+id+' .quiz');if(noQuiz&&id!=='start'&&id!=='practice')markDone(id);
   if(!inited[id]){inited[id]=true;if(INIT[id])INIT[id]()}
   renderNav();window.scrollTo(0,0)}
 
