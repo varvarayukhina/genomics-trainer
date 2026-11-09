@@ -1,0 +1,4 @@
+GFF3: 101 200 -> длина 100
+BED:  100 200 -> длина 100
+BED -> GFF: 101 200
+samtools faidx genome.fa chr3:101-200

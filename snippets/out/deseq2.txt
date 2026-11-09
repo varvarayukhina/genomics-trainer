@@ -1,0 +1,13 @@
+padj < 0.05: 9 генов
+из них среди 50 настоящих: 7 
+ложных среди 450 остальных: 2 
+log2 fold change (MLE): group infected vs control 
+ 
+DataFrame with 5 rows and 3 columns
+         baseMean log2FoldChange      padj
+        <numeric>      <numeric> <numeric>
+gene032   151.692        1.55207 0.0107161
+gene005   578.181        1.47234 0.0167380
+gene033   326.520        1.53000 0.0167380
+gene024   178.906        1.36253 0.0258252
+gene037   241.554        1.41194 0.0258252

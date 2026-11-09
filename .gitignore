@@ -1,0 +1,8 @@
+shots/
+tools/
+_check.js
+PRODUCT.md
+site.html
+__pycache__/
+.DS_Store
+*.err

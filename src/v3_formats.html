@@ -1,0 +1,106 @@
+<article class="view" id="view-formats" data-title="Форматы файлов" hidden>
+  <h1>Форматы файлов</h1>
+  <p class="lede">Биоинформатика — это в основном перекладывание данных из одного формата в другой. Здесь собраны форматы, которые встречаются в твоём пилоте и в любом пайплайне. Все они текстовые, поэтому их можно открыть и прочитать глазами.</p>
+
+  <h2>FASTA: последовательность</h2>
+  <p>Строка с <code>&gt;</code> — имя, дальше буквы. Так хранятся геномы и белки.</p>
+<figure class="code"><figcaption><span>FASTA<small>пример формата</small></span></figcaption><pre>&gt;chr3 Myotis sodalis hap1
+ATGGCTAAAGAACTGGGTCCGTTCAACGATTACTGGGAAAAATAA
+GCTTTAGGCATTCGATCGA
+&gt;chr4 Myotis sodalis hap1
+TTGACCGTAA</pre></figure>
+
+  <h2>FASTQ: чтения с качеством</h2>
+  <p>На каждое прочтение четыре строки: имя, буквы, плюс, качество. Качество кодируется символом: код ASCII минус 33 даёт число Q (шкала Phred). Q = −10·log₁₀(p), где p — вероятность ошибки в этой букве.</p>
+  <div class="bench" id="phred-widget">
+    <h3>Калькулятор Phred (симуляция)</h3>
+    <div class="row"><label for="phred-q">Q = <output id="phred-qv">30</output></label><input type="range" id="phred-q" min="0" max="60" value="30" aria-describedby="phred-out"></div>
+    <div class="stat-row" id="phred-out" aria-live="polite">
+      <div class="stat"><b id="phred-p">—</b><span>вероятность ошибки</span></div>
+      <div class="stat"><b id="phred-a">—</b><span>точность буквы</span></div>
+      <div class="stat"><b id="phred-ch">—</b><span>символ в FASTQ</span></div>
+    </div>
+    <div class="row"><label for="phred-str">Расшифруй строку качества<input type="text" id="phred-str" value="IIIIIIII5?#!AA" spellcheck="false" size="22"></label></div>
+    <div class="readout" id="phred-dec" aria-live="polite"></div>
+  </div>
+  <!--code:fastq_phred|python|Phred в Python-->
+  <div class="note warn"><b>Ловушка</b>
+  Среднее по Q — не то же самое, что средняя точность. Q — логарифмическая шкала: одна плохая позиция тянет настоящую ошибку вверх сильнее, чем кажется по среднему Q. Запусти пример выше: 31,1 против 9,3.</div>
+
+  <h2>SAM/BAM и CIGAR: где и как прочтение легло на геном</h2>
+  <p>SAM — текст, BAM — тот же файл в сжатом виде (читают через <code>samtools view</code>). Одно прочтение — одна строка из 11 обязательных столбцов:</p>
+  <div class="scroll-x"><table>
+    <thead><tr><th>№</th><th>Поле</th><th>Что это</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>QNAME</td><td>имя прочтения</td></tr>
+      <tr><td>2</td><td>FLAG</td><td>числовой набор признаков: цепь, пара, вторичное выравнивание и т. д.</td></tr>
+      <tr><td>3–4</td><td>RNAME, POS</td><td>хромосома и позиция начала (с 1)</td></tr>
+      <tr><td>5</td><td>MAPQ</td><td>качество выравнивания (в смысле Phred)</td></tr>
+      <tr><td>6</td><td>CIGAR</td><td>как именно выровнено: куски совпадений, вставок, выпадений</td></tr>
+      <tr><td>7–9</td><td>RNEXT, PNEXT, TLEN</td><td>данные о паре прочтения</td></tr>
+      <tr><td>10–11</td><td>SEQ, QUAL</td><td>буквы и их качество</td></tr>
+    </tbody></table></div>
+  <p style="margin-top:1rem">CIGAR — строка вида <code>40M2I30M120N25M</code>. Число — длина, буква — операция:</p>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Буква</th><th>Смысл</th><th>Съедает референс</th><th>Съедает прочтение</th></tr></thead>
+    <tbody>
+      <tr><td>M</td><td>выровнено (совпадение или замена)</td><td>да</td><td>да</td></tr>
+      <tr><td>I</td><td>вставка в прочтении</td><td>нет</td><td>да</td></tr>
+      <tr><td>D</td><td>выпадение в прочтении</td><td>да</td><td>нет</td></tr>
+      <tr><td>N</td><td>пропуск, в РНК — интрон</td><td>да</td><td>нет</td></tr>
+      <tr><td>S / H</td><td>мягкая / жёсткая обрезка края</td><td>нет</td><td>S да, H нет</td></tr>
+      <tr><td>= / X</td><td>точное совпадение / замена</td><td>да</td><td>да</td></tr>
+    </tbody></table></div>
+  <div class="bench" id="cigar-widget">
+    <h3>Расшифровка CIGAR (симуляция)</h3>
+    <div class="row">
+      <label for="cigar-in">CIGAR<input type="text" id="cigar-in" value="5S40M2I30M120N25M3D20M4S" spellcheck="false" size="28"></label>
+      <label for="cigar-pos">POS на референсе<input type="number" id="cigar-pos" value="1000001" min="1"></label>
+    </div>
+    <div class="stat-row" aria-live="polite">
+      <div class="stat"><b id="cigar-ref">—</b><span>длина на референсе</span></div>
+      <div class="stat"><b id="cigar-qry">—</b><span>длина прочтения</span></div>
+      <div class="stat"><b id="cigar-end">—</b><span>последняя позиция на референсе</span></div>
+    </div>
+    <div class="scroll-x" style="margin-top:.8rem"><table id="cigar-tbl"></table></div>
+  </div>
+  <!--code:cigar|python|CIGAR в Python-->
+
+  <h2>GFF3, BED, VCF: аннотации, регионы, варианты</h2>
+  <p>Главная ловушка этих форматов — <strong>система координат</strong>.</p>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Формат</th><th>Что хранит</th><th>Координаты</th></tr></thead>
+    <tbody>
+      <tr><td>GFF3 / GTF</td><td>гены, экзоны, CDS</td><td>с 1, конец включён</td></tr>
+      <tr><td>VCF</td><td>варианты (замены, indel)</td><td>с 1</td></tr>
+      <tr><td>SAM/BAM</td><td>выравнивания</td><td>с 1</td></tr>
+      <tr><td>BED</td><td>просто интервалы</td><td>с 0, конец не включён</td></tr>
+      <tr><td>PAF (minimap2, miniprot)</td><td>выравнивания</td><td>с 0, конец не включён</td></tr>
+    </tbody></table></div>
+  <div class="bench" id="coord-widget">
+    <h3>Конвертер координат (симуляция)</h3>
+    <div class="row">
+      <label for="coord-fmt">Исходный формат
+        <select id="coord-fmt"><option value="gff">GFF3 / VCF / SAM (с 1, конец включён)</option><option value="bed">BED / PAF (с 0, конец не включён)</option></select></label>
+      <label for="coord-s">Начало<input type="number" id="coord-s" value="101" min="0"></label>
+      <label for="coord-e">Конец<input type="number" id="coord-e" value="200" min="0"></label>
+    </div>
+    <div class="readout" id="coord-out" aria-live="polite"></div>
+  </div>
+  <!--code:coords|python|Координаты в Python-->
+
+  <p>Пример строки GFF3 от miniprot (значения придуманы, поля реальные: <code>Identity</code> и <code>Positive</code> — доли совпавших и «похожих» аминокислот):</p>
+<figure class="code"><figcaption><span>GFF3<small>пример формата</small></span></figcaption><pre>chr3	miniprot	mRNA	24551234	24553900	152	+	.	ID=MP000001;Rank=1;Identity=0.7120;Positive=0.8244;Target=XP_001 1 322</pre></figure>
+  <p>И строка VCF. <code>GT 0/1</code> значит: у этого образца на одном из двух гаплотипов стоит референсная буква, на другом — альтернативная (гетерозигота).</p>
+<figure class="code"><figcaption><span>VCF<small>пример формата</small></span></figcaption><pre>#CHROM  POS       ID  REF  ALT  QUAL  FILTER  INFO          FORMAT    sample1
+chr3    24551234  .   A    G    812   PASS    DP=34;AF=0.5  GT:DP:GQ  0/1:34:99</pre></figure>
+
+  <section class="quiz" data-quiz="formats" aria-label="Самопроверка"></section>
+
+  <h2>Вопрос с собеседования</h2>
+  <details class="qa"><summary>«Ген по GFF3 начинается в позиции 101 и кончается в 200. Какой он длины и как записать в BED?»</summary><div>
+    <p>Длина 100. В GFF3 координаты с единицы и обе границы включены, поэтому 200 − 101 + 1. В BED начало считается с нуля, конец не включается: <code>100 200</code>. Путаница между этими системами — частый источник «потерянной на единицу» ошибки.</p>
+  </div></details>
+
+  <div class="pager"><a class="btn" href="#assembly">Назад: сборка генома</a><a class="btn primary" href="#alignment">Дальше: выравнивание</a></div>
+</article>

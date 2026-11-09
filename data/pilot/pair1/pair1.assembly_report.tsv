@@ -1,0 +1,3 @@
+haplotype	accession	organism	assembly_name	level	biosample	total_length	ungapped_length	n_scaffolds	n_contigs	contig_N50	scaffold_N50	n_chromosomes_reported	assembled_molecules	n_unplaced_or_unlocalized_scaffolds
+hap1	GCA_057945255.1	Myotis sodalis	mMyoSod1.hap1	Chromosome	SAMN56853512	2089674943	2089662943	43	113	55522871	101681551	23	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,X,Y,MT	20
+hap2	GCA_057945245.1	Myotis sodalis	mMyoSod1.hap2	Chromosome	SAMN56853512	1953790315	1953781015	43	93	62892359	99074623	21	1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21	22

@@ -1,0 +1,85 @@
+<article class="view" id="view-alignment" data-title="Выравнивание и поиск генов" hidden>
+  <h1>Выравнивание и поиск генов</h1>
+  <p class="lede">Как программа находит в двух миллиардах букв ген, который она никогда не видела у этого вида, и что значит «ген целый» в твоём пилоте.</p>
+
+  <h2>Выравнивание: счёт за сходство</h2>
+  <p>Выровнять две последовательности значит поставить их друг под другом так, чтобы совпадений было больше всего. За совпадение даётся плюс, за замену минус, за пропуск (гэп) штраф. <strong>Глобальное</strong> выравнивание (Needleman–Wunsch) тянет обе последовательности от начала до конца. <strong>Локальное</strong> (Smith–Waterman) ищет только лучший кусок: так находят ген внутри хромосомы.</p>
+  <div class="bench" id="sw-widget">
+    <h3>Локальное выравнивание Смита–Уотермана (симуляция)</h3>
+    <div class="row">
+      <label for="sw-a">Последовательность A<input type="text" id="sw-a" value="TGTTACGG" spellcheck="false" size="14"></label>
+      <label for="sw-b">Последовательность B<input type="text" id="sw-b" value="GGTTGACTA" spellcheck="false" size="14"></label>
+    </div>
+    <div class="row">
+      <label for="sw-m">Совпадение<input type="number" id="sw-m" value="2" style="width:6rem"></label>
+      <label for="sw-x">Замена<input type="number" id="sw-x" value="-1" style="width:6rem"></label>
+      <label for="sw-g">Гэп<input type="number" id="sw-g" value="-2" style="width:6rem"></label>
+    </div>
+    <div class="readout" id="sw-out" aria-live="polite"></div>
+    <div class="scroll-x" style="margin-top:.8rem"><div id="sw-matrix" style="padding:8px"></div></div>
+    <p class="hint" style="margin-top:.6rem">Зелёные клетки — путь обратного прохода. Поменяй штраф за гэп и посмотри, как меняется ответ.</p>
+  </div>
+  <!--code:sw|python|Смит–Уотермана на Python-->
+
+  <h2>Белок против генома: зачем и как</h2>
+  <p>Ген летучей мыши похож на человеческий ген лишь на 60–80 % букв, а на белковом уровне сходство остаётся заметнее: разные кодоны часто дают одну и ту же аминокислоту, и такие замены белок не меняют. Поэтому для поиска диверженных генов берут <strong>белки</strong> известного вида (человек, мышь, <em>Rousettus</em>) и выравнивают их с геномом. Эту задачу решает <strong>miniprot</strong>.</p>
+  <p>miniprot сам находит экзоны, границы интронов (сайты сплайсинга), и отмечает дефекты: сдвиги рамки (<code>fs</code>) и стоп-кодоны посреди гена (<code>st</code>). Для каждого найденного места он выдаёт:</p>
+  <ul>
+    <li><strong>Identity</strong> — доля точно совпавших аминокислот;</li>
+    <li><strong>Positive</strong> — доля совпавших и похожих по химии аминокислот;</li>
+    <li><strong>Покрытие запроса</strong> — какая часть белка-запроса легла на геном.</li>
+  </ul>
+  <p>Команда из твоего пилота:</p>
+<figure class="code"><figcaption><span>bash<small>команда из пилота (запущена агентом, вывод в файлах пилота)</small></span><button type="button" class="copy" data-copy="miniprot -t4 -j2 -p 0.3 -N 100 --outs=0.3 --outc=0.3 --outn=200 --gff -P hap1c01_ group.fa queries_final.faa">Копировать</button></figcaption><pre><code>miniprot -t4 -j2 -p 0.3 -N 100 --outs=0.3 --outc=0.3 --outn=200 --gff -P hap1c01_ group.fa queries_final.faa</code></pre></figure>
+  <p>Ключи: <code>-t4</code> четыре потока; <code>-j2</code> модель сплайсинга позвоночных; <code>-p 0.3 -N 100 --outs/--outc/--outn</code> ослаблены, чтобы показывать вторичные копии семейств, а не только лучшую; <code>--gff</code> формат вывода.</p>
+
+  <h3>Как в пилоте определили «целый» ген</h3>
+  <div class="scroll-x"><table>
+    <thead><tr><th>Статус</th><th>Условия (выставлены автором анализа, не из статьи)</th></tr></thead>
+    <tbody>
+      <tr><td><strong>intact</strong></td><td>хит покрывает ≥90 % запроса; 0 сдвигов рамки; 0 стоп-кодонов внутри; есть конечный стоп; Identity ≥0,30; нет интрона длиннее 15 тыс. букв</td></tr>
+      <tr><td><strong>pseudogene-like</strong></td><td>хит с покрытием ≥50 % несёт сдвиг или внутренний стоп, и ни один без дефекта не покрывает ≥70 %</td></tr>
+      <tr><td><strong>uncertain</strong></td><td>только длинный интрон, или Identity &lt;0,30, или локус длиннее 40 тыс. (возможно, склеились соседи)</td></tr>
+      <tr><td><strong>partial</strong></td><td>всё остальное (например, покрытие &lt;90 % или нет конечного стопа в выравнивании)</td></tr>
+    </tbody></table></div>
+  <div class="note warn"><b>Ограничение</b>
+  «Intact» здесь значит «в выравнивании miniprot не найдено поломок». Это не проверенная модель гена. Пороги выбраны вручную, и от них меняются числа.</div>
+
+  <h2>Что делает сдвиг рамки</h2>
+  <p>Рибосома читает ДНК тройками (кодонами). Если выпадает одна буква (или две), все следующие тройки сдвигаются, и белок после этого места превращается в случайный. Часто вскоре встречается стоп-кодон (TAA, TAG, TGA), и белок обрывается. Выпадение трёх букв сохраняет рамку: белок короче на одну аминокислоту, но дальше нормальный.</p>
+  <div class="bench" id="fs-widget">
+    <h3>Сдвиг рамки (симуляция)</h3>
+    <label for="fs-dna">Кодирующая последовательность (ATG … стоп)</label>
+    <textarea id="fs-dna" rows="2" spellcheck="false">ATGGCTAAAGAACTGGGTCCGTTCAACGATTACTGGGAAAAATAA</textarea>
+    <div class="row">
+      <label for="fs-pos">Позиция выпадения (с 0): <output id="fs-posv">10</output></label><input type="range" id="fs-pos" min="0" max="44" value="10">
+    </div>
+    <div class="row field-inline" role="group" aria-label="Сколько букв выпадает">
+      <span>Выпадает:</span>
+      <button type="button" class="chip" data-size="0" aria-pressed="false">0</button>
+      <button type="button" class="chip" data-size="1" aria-pressed="true">1 буква</button>
+      <button type="button" class="chip" data-size="2" aria-pressed="false">2 буквы</button>
+      <button type="button" class="chip" data-size="3" aria-pressed="false">3 буквы</button>
+    </div>
+    <div class="readout" id="fs-out" aria-live="polite"></div>
+  </div>
+  <!--code:translate|python|Трансляция и сдвиг рамки-->
+  <p>Последняя строка вывода — главный факт: в случайной длинной рамке почти любая делеция одной буквы быстро обрывает белок. Поэтому «0 сдвигов и 0 стопов» — сильный критерий целого гена, а любая находка сдвига — повод заподозрить псевдоген. Но это ещё и повод проверить сборку: сдвиг мог получиться из-за ошибки секвенирования.</p>
+
+  <h2>Что может пойти не так</h2>
+  <ul>
+    <li><strong>Смещение запросов.</strong> Запросы — белки человека, мыши и пары видов <em>Rousettus</em>. Гены, специфичные для летучих мышей, будут найдены хуже или названы неточно.</li>
+    <li><strong>Название ≠ родство.</strong> Метка семейства — «лучший по счёту запрос», а не доказанная ортология.</li>
+    <li><strong>Чувствительность.</strong> При настройках по умолчанию miniprot не находил ничего для KLRB1, KLRG1, KLRA и LAIR1 у <em>Myotis</em>. После повышения чувствительности часть находок появилась. Поэтому «нет локуса» не доказывает «нет гена».</li>
+    <li><strong>Слияние и разделение.</strong> В тандемном массиве соседние гены могут склеиться в один локус или один ген распадётся на несколько кусков.</li>
+  </ul>
+
+  <section class="quiz" data-quiz="alignment" aria-label="Самопроверка"></section>
+
+  <h2>Вопрос с собеседования</h2>
+  <details class="qa"><summary>«Почему вы выравниваете белки с геномом, а не ДНК с ДНК?»</summary><div>
+    <p>Между видами, разошедшимися десятки миллионов лет назад, ДНК кодирующих участков сильно изменена, а белок консервативнее: часть замен синонимична. Белковый запрос чувствительнее, и программа вроде miniprot ещё сама находит интроны и сайты сплайсинга. Минус: результат зависит от того, какие белки взяты в запрос.</p>
+  </div></details>
+
+  <div class="pager"><a class="btn" href="#formats">Назад: форматы файлов</a><a class="btn primary" href="#copies">Дальше: семейства генов и копии</a></div>
+</article>

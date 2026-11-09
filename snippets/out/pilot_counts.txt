@@ -1,0 +1,28 @@
+Myotis sodalis
+  KLRC   loci: hap1= 2 hap2= 4 (+2)   intact: hap1=0 hap2=1 (+1)
+  KLRD1  loci: hap1= 1 hap2= 1 (+0)   intact: hap1=0 hap2=1 (+1)
+  KLRK1  loci: hap1= 2 hap2= 3 (+1)   intact: hap1=1 hap2=1 (+0)
+  KLRF   loci: hap1= 2 hap2= 2 (+0)   intact: hap1=1 hap2=1 (+0)
+  LILR   loci: hap1=20 hap2=23 (+3)   intact: hap1=8 hap2=8 (+0)
+  MHC-I  loci: hap1=34 hap2=40 (+6)   intact: hap1=2 hap2=1 (-1)
+  CD1    loci: hap1=16 hap2=23 (+7)   intact: hap1=3 hap2=6 (+3)
+Rhinolophus clivosus
+  KLRC   loci: hap1= 9 hap2= 7 (-2)   intact: hap1=1 hap2=1 (+0)
+  KLRD1  loci: hap1= 4 hap2= 3 (-1)   intact: hap1=2 hap2=2 (+0)
+  KLRK1  loci: hap1= 1 hap2= 1 (+0)   intact: hap1=1 hap2=1 (+0)
+  KLRF   loci: hap1= 2 hap2= 2 (+0)   intact: hap1=1 hap2=1 (+0)
+  LILR   loci: hap1=11 hap2= 9 (-2)   intact: hap1=1 hap2=1 (+0)
+  MHC-I  loci: hap1=18 hap2=15 (-3)   intact: hap1=0 hap2=0 (+0)
+  CD1    loci: hap1= 3 hap2= 3 (+0)   intact: hap1=0 hap2=0 (+0)
+Eidolon dupreanum
+  KLRC   loci: hap1= 9 hap2=11 (+2)   intact: hap1=3 hap2=3 (+0)
+  KLRD1  loci: hap1=10 hap2= 9 (-1)   intact: hap1=6 hap2=7 (+1)
+  KLRK1  loci: hap1= 1 hap2= 1 (+0)   intact: hap1=1 hap2=1 (+0)
+  KLRF   loci: hap1= 2 hap2= 2 (+0)   intact: hap1=2 hap2=2 (+0)
+  LILR   loci: hap1= 5 hap2= 5 (+0)   intact: hap1=0 hap2=0 (+0)
+  MHC-I  loci: hap1=19 hap2=16 (-3)   intact: hap1=0 hap2=0 (+0)
+  CD1    loci: hap1=10 hap2=10 (+0)   intact: hap1=1 hap2=2 (+1)
+
+|hap2 - hap1| по всем 21 парам семейство×вид
+  все локусы: медиана 1 максимум 7
+  только intact: медиана 0 максимум 3
