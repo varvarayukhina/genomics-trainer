@@ -1358,7 +1358,7 @@ minimap2<span class="w"> </span>-x<span class="w"> </span>asm10<span class="w"> 
   </ul>
 
   <h2>Репозитории из статей</h2>
-  <p>Каждый репозиторий сопровождает опубликованную статью. Рядом с ним: что в нём читать, и вопросы, ответы на которые я проверил по самому коду.</p>
+  <p>Каждый репозиторий сопровождает опубликованную статью. Для каждого: ссылка на конкретную функцию (привязана к коммиту, поэтому номера строк не уедут) и три вопроса, ответы на которые проверены по самому коду. Сам код здесь не копируется: открой ссылку и читай рядом. Лицензии у репозиториев разные, они указаны в карточках.</p>
   <div id="code-list"></div>
 
   <div class="pager"><a class="btn" href="#practice">Назад: практикум</a><a class="btn primary" href="#interview">Дальше: собеседование</a></div>
@@ -1465,7 +1465,427 @@ minimap2<span class="w"> </span>-x<span class="w"> </span>asm10<span class="w"> 
 'use strict';
 const PILOT={"pairs": [{"id": "pair1", "name": "Myotis sodalis", "rows": {"B2M": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 16, "intact": 3, "partial": 12, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 23, "intact": 6, "partial": 15, "pseudogene_like": 2, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KIR": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 2, "intact": 0, "partial": 0, "pseudogene_like": 0, "uncertain": 2}, "hap2": {"loci": 4, "intact": 1, "partial": 1, "pseudogene_like": 2, "uncertain": 0}}, "KLRD1": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 2, "intact": 1, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 1, "partial": 0, "pseudogene_like": 2, "uncertain": 0}}, "LILR": {"hap1": {"loci": 20, "intact": 8, "partial": 7, "pseudogene_like": 2, "uncertain": 3}, "hap2": {"loci": 23, "intact": 8, "partial": 11, "pseudogene_like": 2, "uncertain": 2}}, "MHC-I": {"hap1": {"loci": 34, "intact": 2, "partial": 26, "pseudogene_like": 6, "uncertain": 0}, "hap2": {"loci": 40, "intact": 1, "partial": 33, "pseudogene_like": 6, "uncertain": 0}}, "MR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 0, "intact": 0, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 1}}}}, {"id": "pair2", "name": "Rhinolophus clivosus", "rows": {"B2M": {"hap1": {"loci": 2, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 2, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 0, "partial": 2, "pseudogene_like": 1, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 1}, "hap2": {"loci": 3, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "FCAR": {"hap1": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}}, "KLRB1": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 9, "intact": 1, "partial": 6, "pseudogene_like": 1, "uncertain": 1}, "hap2": {"loci": 7, "intact": 1, "partial": 6, "pseudogene_like": 0, "uncertain": 0}}, "KLRD1": {"hap1": {"loci": 4, "intact": 2, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRG1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LAIR1": {"hap1": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LILR": {"hap1": {"loci": 11, "intact": 1, "partial": 7, "pseudogene_like": 3, "uncertain": 0}, "hap2": {"loci": 9, "intact": 1, "partial": 8, "pseudogene_like": 0, "uncertain": 0}}, "MHC-I": {"hap1": {"loci": 18, "intact": 0, "partial": 16, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 15, "intact": 0, "partial": 14, "pseudogene_like": 1, "uncertain": 0}}, "MR1": {"hap1": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 2, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 3, "intact": 0, "partial": 0, "pseudogene_like": 2, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 0, "pseudogene_like": 3, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 0, "pseudogene_like": 1, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 1, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}}}, {"id": "pair3", "name": "Eidolon dupreanum", "rows": {"B2M": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "CD1": {"hap1": {"loci": 10, "intact": 1, "partial": 3, "pseudogene_like": 6, "uncertain": 0}, "hap2": {"loci": 10, "intact": 2, "partial": 2, "pseudogene_like": 6, "uncertain": 0}}, "CLEC12A": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "CLEC2D": {"hap1": {"loci": 3, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 1}, "hap2": {"loci": 3, "intact": 0, "partial": 1, "pseudogene_like": 1, "uncertain": 1}}, "CLEC4E": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KIR": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "KLRB1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRC": {"hap1": {"loci": 9, "intact": 3, "partial": 3, "pseudogene_like": 0, "uncertain": 3}, "hap2": {"loci": 11, "intact": 3, "partial": 4, "pseudogene_like": 1, "uncertain": 3}}, "KLRD1": {"hap1": {"loci": 10, "intact": 6, "partial": 3, "pseudogene_like": 1, "uncertain": 0}, "hap2": {"loci": 9, "intact": 7, "partial": 2, "pseudogene_like": 0, "uncertain": 0}}, "KLRF": {"hap1": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 2, "intact": 2, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRG2": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "KLRK1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LAIR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "LILR": {"hap1": {"loci": 5, "intact": 0, "partial": 3, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 5, "intact": 0, "partial": 2, "pseudogene_like": 2, "uncertain": 1}}, "MHC-I": {"hap1": {"loci": 19, "intact": 0, "partial": 17, "pseudogene_like": 2, "uncertain": 0}, "hap2": {"loci": 16, "intact": 0, "partial": 14, "pseudogene_like": 2, "uncertain": 0}}, "MR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "NCR2": {"hap1": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 0, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}, "NCR3": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP1": {"hap1": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 1, "intact": 1, "partial": 0, "pseudogene_like": 0, "uncertain": 0}}, "TAP2": {"hap1": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}, "hap2": {"loci": 3, "intact": 2, "partial": 1, "pseudogene_like": 0, "uncertain": 0}}}}]};
 const HARNESS="import contextlib\nimport copy\nimport io\nimport json\nimport traceback\n\n\ndef _eq(got, want, tol):\n    if isinstance(want, bool) or isinstance(got, bool):\n        return isinstance(got, bool) and isinstance(want, bool) and got == want\n    if isinstance(want, (int, float)) and isinstance(got, (int, float)):\n        return abs(got - want) <= max(tol, 0.0) if (isinstance(want, float) or isinstance(got, float)) else got == want\n    if isinstance(want, (list, tuple)) and isinstance(got, (list, tuple)):\n        return len(got) == len(want) and all(_eq(g, w, tol) for g, w in zip(got, want))\n    if isinstance(want, dict) and isinstance(got, dict):\n        return set(got) == set(want) and all(_eq(got[k], want[k], tol) for k in want)\n    return got == want\n\n\ndef _short(x, n=200):\n    s = repr(x)\n    return s if len(s) <= n else s[:n] + \"...\"\n\n\n_res = {\"stdout\": \"\", \"error\": None, \"tests\": []}\n_buf = io.StringIO()\n_ns = {\"__name__\": \"__main__\"}\nwith contextlib.redirect_stdout(_buf):\n    try:\n        exec(compile(USER_CODE, \"<твой код>\", \"exec\"), _ns)\n    except BaseException:\n        _res[\"error\"] = traceback.format_exc(limit=-3)\n    if _res[\"error\"] is None:\n        _f = _ns.get(FN)\n        if not callable(_f):\n            _res[\"error\"] = \"Не найдена функция \" + FN + \". Не переименовывай её и не удаляй def.\"\n        else:\n            for _c in json.loads(CASES_JSON):\n                _args = copy.deepcopy(_c[\"args\"])\n                _entry = {\"hidden\": bool(_c.get(\"hidden\")), \"args\": _short(_c[\"args\"]) if not _c.get(\"hidden\") else None,\n                          \"want\": _short(_c[\"expected\"]) if not _c.get(\"hidden\") else None}\n                try:\n                    _got = _f(*_args)\n                    _entry[\"ok\"] = bool(_eq(_got, _c[\"expected\"], TOL))\n                    _entry[\"got\"] = _short(_got) if not _c.get(\"hidden\") else None\n                except BaseException:\n                    _entry[\"ok\"] = False\n                    _entry[\"got\"] = None\n                    _entry[\"error\"] = traceback.format_exc(limit=-2)\n                _res[\"tests\"].append(_entry)\n_res[\"stdout\"] = _buf.getvalue()[:4000]\n_RESULT = json.dumps(_res, ensure_ascii=False)\n_RESULT\n";
-const CODEREAD=[];
+const CODEREAD=[
+  {
+    "id": "minimap2",
+    "name": "minimap2",
+    "topic": "Выравнивание длинных ридов и геномов",
+    "repo_url": "https://github.com/lh3/minimap2",
+    "paper": {
+      "title": "Minimap2: pairwise alignment for nucleotide sequences",
+      "journal": "Bioinformatics",
+      "year": 2018,
+      "doi": "10.1093/bioinformatics/bty191"
+    },
+    "license": "MIT (по файлу LICENSE.txt; GitHub API: NOASSERTION / Other)",
+    "language": "C",
+    "file_path": "sketch.c",
+    "permalink": "https://github.com/lh3/minimap2/blob/3c28777e7e2dcc90f825de1b9f17a89cca7d4452/sketch.c#L77-L143",
+    "line_range": [
+      77,
+      143
+    ],
+    "what": "Функция mm_sketch проходит по последовательности ДНК и в каждом окне из w подряд идущих k-меров выбирает один — минимайзер, то есть k-мер с наименьшим хеш-значением, — и запоминает его позицию и цепь. Минимайзеры служат «ключами» индекса: по ним minimap2 быстро находит похожие участки в геноме и ридах.",
+    "questions": [
+      {
+        "q": "Почему в assert стоит ограничение k <= 28 и как k-мер хранится в одном числе?",
+        "a": "Каждое основание кодируется 2 битами (таблица seq_nt4_table: A, C, G, T → 0, 1, 2, 3, всё остальное → 4), поэтому k-мер занимает 2k бит в uint64_t; маска строится в строке 79. При k = 28 это 56 бит, а младшие 8 бит остаются под длину участка kmer_span: info.x = hash64(...) << 8 | kmer_span (строка 112). Поэтому длиннее 28 нельзя — об этом комментарий в строке 84 («56 bits for k-mer»).",
+        "lines": "9-26, 79, 84, 111-112"
+      },
+      {
+        "q": "Как функция учитывает обе цепи ДНК и что делает с «симметричными» k-мерами?",
+        "a": "Параллельно ведутся два числа: kmer[0] — прямой k-мер (строка 106) и kmer[1] — обратно-комплементарный (строка 107; 3ULL^c даёт комплементарное основание). В хеш идёт меньший из двух (z = kmer[0] < kmer[1] ? 0 : 1, строка 109), а z записывается в младший бит поля позиции (строка 113). Если k-мер совпадает со своим обратным комплементом, цепь определить нельзя, и он пропускается (строка 108).",
+        "lines": "106-109, 113"
+      },
+      {
+        "q": "Что считает переменная l и что происходит на неоднозначных основаниях (N)?",
+        "a": "l — число подряд идущих однозначных оснований (++l, строка 110). Запись в буфер получает настоящее значение, только когда l >= k (строка 111); иначе info остаётся «пустым» (UINT64_MAX), а проверки min.x != UINT64_MAX (строки 117, 124, 127, 141) не пропускают его в результат. Для символа вне ACGT (c >= 4) срабатывает ветка else в строке 115: l, очередь и kmer_span обнуляются — окно начинается заново после N.",
+        "lines": "91-92, 110-111, 115, 117, 141"
+      }
+    ],
+    "difficulty": 3,
+    "skill": "Читать C-код с битовыми операциями: k-мер как число, канонический k-мер (прямая и обратная цепь), минимайзеры в скользящем окне",
+    "unverified": []
+  },
+  {
+    "id": "miniprot",
+    "name": "miniprot",
+    "topic": "Выравнивание белков на геном",
+    "repo_url": "https://github.com/lh3/miniprot",
+    "paper": {
+      "title": "Protein-to-genome alignment with miniprot",
+      "journal": "Bioinformatics",
+      "year": 2023,
+      "doi": "10.1093/bioinformatics/btad014"
+    },
+    "license": "MIT",
+    "language": "C",
+    "file_path": "sketch.c",
+    "permalink": "https://github.com/lh3/miniprot/blob/81f9b93481cec16622eff339fc998e4f38da344e/sketch.c#L62-L100",
+    "line_range": [
+      62,
+      100
+    ],
+    "what": "Функция mp_sketch_nt4 «переводит» одну цепь контига в белок сразу во всех трёх рамках считывания, находит участки без стоп-кодонов длиннее min_aa_len аминокислот (ORF) и для каждого собирает ключи — хеши коротких аминокислотных k-меров. Ключи сортируются и очищаются от повторов; именно по ним потом белок ищут в геноме.",
+    "questions": [
+      {
+        "q": "Как функция ведёт учёт трёх рамок считывания и когда участок без стоп-кодона передаётся дальше?",
+        "a": "Для каждой рамки p (0, 1, 2) хранятся k[p] — число аминокислот подряд без стопа — и e[p] — позиция конца последнего кодона (строки 65, 68-69). Индекс p по кругу меняется от 0 до 2 с каждым нуклеотидом (строка 71), а кодон — это последние три основания (строка 73). Если кодон даёт aa >= 20 (в таблице aa-кодов индекс 20 — стоп '*', 21 — 'X'), участок закрывается: при k[p] >= min_aa_len вызывается mp_sketch_clean_orf, затем счётчики обнуляются (строки 76-79); иначе k[p] и e[p] растут (строка 80). По умолчанию min_aa_len = 30 (options.c:15).",
+        "lines": "65, 68-80; nasw-tab.c:9, 96-98, 103; options.c:15"
+      },
+      {
+        "q": "Что происходит, когда в геноме встречается неопределённое основание (N)?",
+        "a": "Срабатывает ветка else (строки 82-89): для всех трёх рамок открытые участки закрываются и, если они достаточно длинные, передаются в mp_sketch_clean_orf (строки 83-87); затем l и codon обнуляются (строка 88). Значит, ORF никогда не «перешагивает» через N. После конца последовательности тем же способом дописываются незакрытые участки (строки 91-93).",
+        "lines": "82-93"
+      },
+      {
+        "q": "Функция обрабатывает только одну цепь. Где запускается обратная и зачем в конце сортировка с удалением повторов?",
+        "a": "В index.c build_worker вызывается для каждого j из 2*n_ctg (kt_for, строка 123): контиг — это j>>1, цепь — j&1, и mp_ntseq_get(..., j&1, seq) при j&1 == 1 отдаёт обратно-комплементарную последовательность (index.c:62, ntseq.c:99-103). В конце mp_sketch_nt4 записи сортируются radix_sort_mp64, и соседние одинаковые схлопываются (строки 94-99). В запись входят хеш k-мера и номер блока позиции ((i+2)>>bbit, строка 57; по умолчанию bbit = 8, то есть блоки по 256 нт — options.c:14), поэтому один и тот же k-мер внутри блока даёт одинаковые записи.",
+        "lines": "94-99, 57; index.c:62, 123; ntseq.c:99-103; options.c:14"
+      }
+    ],
+    "difficulty": 3,
+    "skill": "Понимать трансляцию ДНК в белок в трёх рамках, ORF и индексацию по аминокислотным k-мерам; читать C-код с конечными автоматами",
+    "unverified": []
+  },
+  {
+    "id": "hifiasm",
+    "name": "hifiasm",
+    "topic": "Сборка генома de novo",
+    "repo_url": "https://github.com/chhylp123/hifiasm",
+    "paper": {
+      "title": "Haplotype-resolved de novo assembly using phased assembly graphs with hifiasm",
+      "journal": "Nature Methods",
+      "year": 2021,
+      "doi": "10.1038/s41592-020-01056-5"
+    },
+    "license": "MIT",
+    "language": "C++",
+    "file_path": "hist.cpp",
+    "permalink": "https://github.com/chhylp123/hifiasm/blob/ec9a8b222d149d25b7355e83765698640d59b189/hist.cpp#L15-L44",
+    "line_range": [
+      15,
+      44
+    ],
+    "what": "Функция print_hist_lines печатает в stderr «гистограмму» спектра k-меров (ряд звёздочек на каждую кратность) и находит «долину» между ошибочными k-мерами и главным пиком покрытия. Эта функция в проверенном коммите нигде не вызывается: рабочая версия той же логики — ha_analyze_count в этом же файле (строки 74-157, их 84, поэтому в лимит 80 строк она не вошла); по положению главного пика hifiasm оценивает покрытие гомозиготных k-меров.",
+    "questions": [
+      {
+        "q": "Что лежит в cnt[i] и как функция находит «долину» между ошибочными k-мерами и основным пиком?",
+        "a": "cnt[i] — число различных k-меров, встреченных ровно i раз (так заполняет гистограмму ha_ct_hist: ++cnt[kh_key&YAK_MAX_COUNT], htab.cpp:227-236). Поиск идёт слева от max(start, start_cnt) (строка 24): цикл останавливается на первом i, где cnt[i] > cnt[i-1] (строки 25-26), и low_i = i - 1 — последняя точка спада, дно долины (строка 27). В рабочей версии start_cnt = min_hist_kmer_cnt = 5 (CommandLines.cpp:277, htab.cpp:1156).",
+        "lines": "21, 24-27; htab.cpp:227-236; CommandLines.cpp:277"
+      },
+      {
+        "q": "Откуда начинается поиск самого высокого пика и чем это отличается от рабочей ha_analyze_count?",
+        "a": "Здесь поиск максимума начинается с max(start, start_cnt) (строка 31) и идёт по всем i до конца (строки 32-34), то есть не привязан к найденной долине. В ha_analyze_count максимум ищется только правее долины, начиная с low_i + 1 (строки 94-97), поэтому главным пиком становится пик покрытия, а не гора ошибочных k-меров с малой кратностью.",
+        "lines": "31-35; ha_analyze_count: 94-98"
+      },
+      {
+        "q": "Как считается длина «столбика» из звёздочек и что значит символ '>' в конце ряда?",
+        "a": "Длина x = 100 * cnt[i] / cnt[max_i] с округлением (+ .499), hist_max = 100 (строки 17, 39). Печать идёт от start (строка 37), а пик ищется от max(start, start_cnt), поэтому, например, cnt[2] может оказаться выше пика (комментарий в строке 40): тогда x обрезается до 100 и ряд дополняется '>' (exceed, строка 40; печать — ha_hist_line, строки 10-11). После пика цикл прерывается, как только столбик стал нулевой длины (строка 41).",
+        "lines": "17, 37-42; 10-11"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать циклы поиска минимума и максимума по гистограмме; понимать спектр k-меров: ошибки, пик покрытия и порог отсечения повторов",
+    "unverified": []
+  },
+  {
+    "id": "biopython",
+    "name": "Biopython",
+    "topic": "Форматы файлов и парсинг",
+    "repo_url": "https://github.com/biopython/biopython",
+    "paper": {
+      "title": "Biopython: freely available Python tools for computational molecular biology and bioinformatics",
+      "journal": "Bioinformatics",
+      "year": 2009,
+      "doi": "10.1093/bioinformatics/btp163"
+    },
+    "license": "Biopython License Agreement; файл FastaIO.py — на выбор Biopython License Agreement или BSD 3-Clause (LICENSE.rst и заголовок файла; GitHub API: NOASSERTION / Other)",
+    "language": "Python",
+    "file_path": "Bio/SeqIO/FastaIO.py",
+    "permalink": "https://github.com/biopython/biopython/blob/1ef21971aa828fd357897567044357e9f985abc8/Bio/SeqIO/FastaIO.py#L29-L73",
+    "line_range": [
+      29,
+      73
+    ],
+    "what": "SimpleFastaParser — генератор: читает FASTA-файл построчно и для каждой записи отдаёт пару (заголовок без символа '>', последовательность одной строкой). В памяти одновременно лежит только текущая запись, поэтому так можно обходить и очень большие файлы.",
+    "questions": [
+      {
+        "q": "Зачем у первого цикла for есть ветка else с return и что произойдёт с файлом без единой строки '>'?",
+        "a": "Цикл (строки 52-55) пропускает всё до первой строки, начинающейся с '>' (мусор, пустые строки, комментарии), и при находке сохраняет заголовок без '>' и выходит по break. Ветка else у for выполняется только если break не сработал, то есть '>' нет вообще: тогда return завершает генератор, не вернув ни одной записи (строки 56-58). Я проверил на тестовых строках: пустой файл и файл без '>' дают [].",
+        "lines": "51-58"
+      },
+      {
+        "q": "Когда именно функция отдаёт запись и почему после цикла стоит ещё один yield?",
+        "a": "Последовательность записи накапливается в списке lines (строка 71). Запись отдаётся, когда встретился следующий заголовок '>' (строки 66-67), после чего список очищается, а в title попадает новый заголовок (строки 68-69). У последней записи следующего '>' нет, поэтому её отдаёт yield в строке 73 после цикла; без него последняя запись потерялась бы.",
+        "lines": "64-73"
+      },
+      {
+        "q": "Какая очистка применяется к тексту и что вернётся для записи с пустой последовательностью?",
+        "a": "Заголовок: line[1:].rstrip() — без '>' и без перевода строки (строки 54, 69). Строки последовательности очищаются rstrip() (строка 71), а при склейке из результата убираются внутренние пробелы и символы \\r (строки 61-63, 67, 73) — на случай «сломанных» файлов. Если после заголовка сразу идёт следующий '>', склейка пустого списка даёт пустую строку: в моём тесте запись '>b' вернулась как ('b', '').",
+        "lines": "54, 61-63, 67, 69, 71, 73"
+      }
+    ],
+    "difficulty": 1,
+    "skill": "Читать генераторы Python (yield), построчный разбор текстового формата и конструкцию for/else",
+    "unverified": []
+  },
+  {
+    "id": "deseq2",
+    "name": "DESeq2",
+    "topic": "Дифференциальная экспрессия в bulk RNA-seq",
+    "repo_url": "https://github.com/thelovelab/DESeq2",
+    "paper": {
+      "title": "Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2",
+      "journal": "Genome Biology",
+      "year": 2014,
+      "doi": "10.1186/s13059-014-0550-8"
+    },
+    "license": "LGPL (>= 3) (по DESCRIPTION; GitHub API: license = null)",
+    "language": "R",
+    "file_path": "R/core.R",
+    "permalink": "https://github.com/thelovelab/DESeq2/blob/4ba3e3a159da872566d825609a119a7615069663/R/core.R#L502-L579",
+    "line_range": [
+      502,
+      579
+    ],
+    "what": "estimateSizeFactorsForMatrix считает для каждой библиотеки (столбца таблицы счётчиков) коэффициент размера методом медианы отношений: счётчик каждого гена сравнивается с геометрическим средним этого гена по всем образцам, и берётся медиана таких отношений. DESeq2 вызывает её из estimateSizeFactors (methods.R:393), чтобы учесть различия в глубине секвенирования до статистического теста.",
+    "questions": [
+      {
+        "q": "Как для каждого гена строится «эталонный образец» и почему гены с нулём хотя бы в одном образце не участвуют?",
+        "a": "При type = 'ratio' (строки 542-543) берётся среднее логарифмов счётчиков по образцам, rowMeans(log(counts)) — это логарифм геометрического среднего гена. Если хотя бы в одном образце счётчик 0, log даёт -Inf и среднее для гена тоже -Inf. Такие гены отбрасывает условие is.finite(loggeomeans) в строке 563 (а cnts > 0 исключает нулевые счётчики самого образца). Если нуль есть у каждого гена, функция останавливается с ошибкой (строки 558-559); для таких данных предусмотрен type = 'poscounts' (строки 544-550).",
+        "lines": "540-550, 558-559, 563"
+      },
+      {
+        "q": "Как из этого получается размерный фактор образца?",
+        "a": "Для каждого столбца (образца) apply(counts, 2, ...) считает log(cnts) - loggeomeans — логарифм отношения счётчика гена к его геометрическому среднему. Из них остаются только гены с конечным средним и ненулевым счётчиком, к ним применяется locfunc (по умолчанию медиана, строка 536), и результат возводится в экспоненту (строки 562-564).",
+        "lines": "536, 561-564"
+      },
+      {
+        "q": "Для чего нужны аргументы controlGenes и geoMeans и что делают строки 574-577?",
+        "a": "controlGenes (строки 561, 565-573) ограничивает расчёт выбранными генами — по документации это гены домашнего хозяйства или спайк-ины (строки 520-521). geoMeans (строки 551-557; документация 516-519) позволяет передать готовые геометрические средние из другого набора данных, то есть «замороженные» факторы. В этом случае полученные факторы делятся на свою геометрическую среднюю, sf/exp(mean(log(sf))) (строки 574-577), чтобы их геометрическое среднее равнялось 1.",
+        "lines": "516-521, 551-557, 561-573, 574-577"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать R-код с apply, логарифмами и матрицами: нормировка счётчиков на глубину секвенирования методом медианы отношений",
+    "unverified": []
+  },
+  {
+    "id": "scanpy",
+    "name": "Scanpy",
+    "topic": "Анализ одноклеточных данных (scRNA-seq)",
+    "repo_url": "https://github.com/scverse/scanpy",
+    "paper": {
+      "title": "SCANPY: large-scale single-cell gene expression data analysis",
+      "journal": "Genome Biology",
+      "year": 2018,
+      "doi": "10.1186/s13059-017-1382-0"
+    },
+    "license": "BSD-3-Clause",
+    "language": "Python",
+    "file_path": "src/scanpy/preprocessing/_normalization.py",
+    "permalink": "https://github.com/scverse/scanpy/blob/117682e1b233cb689e87e3009870d131cf72bae5/src/scanpy/preprocessing/_normalization.py#L110-L165",
+    "line_range": [
+      110,
+      165
+    ],
+    "what": "Функция _normalize_total_helper — внутренняя часть sc.pp.normalize_total: считает общее число прочтений в каждой клетке и делит строку клетки так, чтобы у всех клеток сумма стала одинаковой (target_sum). По умолчанию target_sum — медиана сумм по клеткам, а с exclude_highly_expressed очень сильно экспрессируемые гены не влияют на размер клетки.",
+    "questions": [
+      {
+        "q": "Как считается общее число прочтений в клетке и откуда берётся target_sum по умолчанию?",
+        "a": "В плотной ветке counts_per_cell = stats.sum(x, axis=1) — сумма по генам для каждой клетки (строка 150); для разреженной CSR-матрицы то же делает _normalize_csr (строки 137-144; суммирует x.data по диапазонам indptr, строки 83-87). Если target_sum не задан, берётся медиана ненулевых сумм — _compute_nnz_median (строки 145-146 и 157-158; определение — строки 61-67). Документация говорит то же: медиана суммарных счётчиков клеток до нормировки (строки 233-236).",
+        "lines": "145-146, 150, 157-158, 61-67; 83-87"
+      },
+      {
+        "q": "Что делает exclude_highly_expressed в плотной ветке и удаляет ли он гены из матрицы?",
+        "a": "Ген считается высокоэкспрессируемым, если хотя бы в одной клетке на него приходится больше max_fraction (по умолчанию 0,05) от суммы этой клетки (строка 153). Маска gene_subset оставляет гены, для которых такого нет (строка 154), и суммы по клеткам пересчитываются только по ним (строка 156). Сами гены из матрицы не удаляются: функция лишь возвращает маску, а вызывающая normalize_total пишет их имена в лог (строки 344-348).",
+        "lines": "151-156; normalize_total: 344-348"
+      },
+      {
+        "q": "Где происходит собственно нормировка и берётся ли логарифм?",
+        "a": "Строка 160 превращает суммы в множители counts_per_cell / target_sum, а строки 162-164 делят каждую строку матрицы (клетку, axis=0) на свой множитель; для numpy и разреженных матриц деление идёт на месте (out = x, строка 161). Клетки с нулевой суммой делятся на 1, а не на 0 (allow_divide_by_zero=False, _utils/__init__.py:621-622). Логарифм здесь не берётся: в _normalization.py log1p вызывается только в normalize_shifted_clr (строка 428).",
+        "lines": "160-164; _utils/__init__.py:593-597, 621-622; 428"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать нормировку матрицы клетки × гены: векторные операции numpy и разреженные матрицы, медиана как значение по умолчанию",
+    "unverified": []
+  },
+  {
+    "id": "nfcore-rnaseq",
+    "name": "nf-core/rnaseq",
+    "topic": "Управление рабочими процессами (Nextflow)",
+    "repo_url": "https://github.com/nf-core/rnaseq",
+    "paper": {
+      "title": "The nf-core framework for community-curated bioinformatics pipelines",
+      "journal": "Nature Biotechnology",
+      "year": 2020,
+      "doi": "10.1038/s41587-020-0439-x"
+    },
+    "license": "MIT",
+    "language": "Nextflow",
+    "file_path": "subworkflows/local/align_star/main.nf",
+    "permalink": "https://github.com/nf-core/rnaseq/blob/95dbcd977a74a4d1b2a3954abb90df3851014afa/subworkflows/local/align_star/main.nf#L13-L91",
+    "line_range": [
+      13,
+      91
+    ],
+    "what": "Подпроцесс ALIGN_STAR выравнивает риды на геном программой STAR (или её ускоренными вариантами Sentieon и Parabricks, если включён флаг), затем сортирует и индексирует BAM и собирает статистику samtools. Функция getStarPercentMapped регулярным выражением достаёт из лога STAR долю однозначно картированных ридов.",
+    "questions": [
+      {
+        "q": "Что означают блоки take:, main: и emit: в workflow ALIGN_STAR?",
+        "a": "take: (строки 27-35) — 8 входов подпроцесса: 4 канала (reads, index, gtf, fasta_fai) и 4 булевых значения (star_ignore_sjdbgtf, use_sentieon_star, use_parabricks_star, skip_markduplicates), типы указаны в комментариях. main: (строка 37) — тело, где вызываются процессы и модули. emit: (строки 76-90) — 14 именованных выходов (orig_bam, log_final, ..., percent_mapped), которые вызывающий workflow использует как ALIGN_STAR.out.<имя>.",
+        "lines": "27-35, 37, 76-90"
+      },
+      {
+        "q": "Как подпроцесс выбирает, какой программой выравнивать, и как дальше работает с результатом?",
+        "a": "Ветвление if / else if / else по булевым флагам (строки 43-59): use_sentieon_star → SENTIEON_STAR_ALIGN, use_parabricks_star → PARABRICKS_RNA_FQ2BAM, иначе по умолчанию STAR_ALIGN. Результат в любом случае кладётся в одну переменную ch_star_out (строки 46, 52, 57), поэтому дальше (строки 61-68) выходы берутся одинаково через .out.bam, .out.log_final и т. д. Сортировка и статистика BAM (BAM_SORT_STATS_SAMTOOLS) вызывается один раз для любого выравнивателя (строка 74).",
+        "lines": "43-59, 61-68, 74"
+      },
+      {
+        "q": "Как функция getStarPercentMapped достаёт долю картированных ридов и как она применяется к каналу?",
+        "a": "Шаблон /Uniquely mapped reads %\\s*\\|\\s*([\\d\\.]+)%/ (строка 15) применяется к каждой строке лога STAR (align_log.eachLine, строка 16); если строка совпала, число из первой группы (matcher[0][1]) переводится в float (строки 17-19). Цикл не прерывается, поэтому при нескольких совпадениях останется последнее; без совпадений вернётся 0 (строки 14, 23). К каналу функция применяется через map: ch_log_final.map { meta, log -> [ meta, getStarPercentMapped(params, log) ] } (строка 69), так что метаданные образца сохраняются. Первый аргумент _params в теле не используется.",
+        "lines": "13-24, 69"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать Nextflow: workflow с take/main/emit, каналы, include модулей, ветвление по флагам и Groovy-функции с регулярными выражениями",
+    "unverified": [
+      "paper_scope: статья описывает фреймворк nf-core в целом, а не пайплайн rnaseq (README и CITATIONS.md репозитория сами указывают её как публикацию nf-core); отдельной рецензируемой статьи про nf-core/rnaseq быстрый поиск по Crossref не нашёл (поиск не исчерпывающий)"
+    ]
+  },
+  {
+    "id": "bcftools",
+    "name": "BCFtools",
+    "topic": "Вызов вариантов",
+    "repo_url": "https://github.com/samtools/bcftools",
+    "paper": {
+      "title": "Twelve years of SAMtools and BCFtools",
+      "journal": "GigaScience",
+      "year": 2021,
+      "doi": "10.1093/gigascience/giab008"
+    },
+    "license": "MIT/Expat или GPL на выбор (по файлу LICENSE; GitHub API: NOASSERTION / Other)",
+    "language": "C",
+    "file_path": "prob1.c",
+    "permalink": "https://github.com/samtools/bcftools/blob/a7334b4b33747413a4f376238aa1338823121fd1/prob1.c#L181-L208",
+    "line_range": [
+      181,
+      208
+    ],
+    "what": "bcf_p1_call_gt выбирает генотип одного образца в позиции: умножает правдоподобие трёх генотипов на их априорную вероятность по закону Харди-Вайнберга при данной частоте референсного аллеля, нормирует результат и берёт максимум. Возвращает одно число: качество генотипа по шкале Phred в старших битах и код генотипа в двух младших.",
+    "questions": [
+      {
+        "q": "Из чего складывается вероятность генотипа в этой функции?",
+        "a": "Это формула Байеса до нормировки: g[i] = pdg[i] * f3[i] (строка 196) — правдоподобие данных при генотипе pdg (из PL-значений: q2p[i] = 10^(-i/10), prob1.c:110, 164) умножается на априорную вероятность генотипа f3. Для диплоида априор берётся по закону Харди-Вайнберга от частоты референсного аллеля f0: (1-f0)², 2·f0·(1-f0), f0² (строка 191); для гаплоида гетерозиготы нет, f3[1] = 0 (строка 193). Сумма считается в строках 195-196, деление на неё — в строке 199.",
+        "lines": "180, 187-199; prob1.c:110, 164"
+      },
+      {
+        "q": "В каком порядке лежат три генотипа в g, pdg и f3 и как код превращается в 0/0, 0/1, 1/1?",
+        "a": "Индекс 0 — гомозигота по альтернативному аллелю, 1 — гетерозигота, 2 — гомозигота по референсу. pdg заполняется «наоборот»: pdg[0] берётся из PL[2], pdg[2] — из PL[0] (prob1.c:164), а f3[2] = f0² — вес референсной гомозиготы (строка 191). Вызывающий код ccall.c разбирает x & 3 так: 1 → 0/1, 0 → 1/1, иначе → 0/0 (ccall.c:272-289), а x >> 2 записывается в GQ (ccall.c:290).",
+        "lines": "191, 200; prob1.c:164; ccall.c:271-290"
+      },
+      {
+        "q": "Как считается качество генотипа и что делает параметр is_var?",
+        "a": "Если сайт не вариантный (is_var == 0), генотип принудительно 0/0 (max_i = 2, строка 202). Ошибка = 1 - вероятность выбранного генотипа (строка 203); снизу она ограничена 1e-308, чтобы не брать log(0) (строка 204). Качество по шкале Phred, −10·log10(ошибка), записано как -4.343 * log(max) + .499 (10/ln 10 ≈ 4,343, добавка .499 — округление), максимум 99 (строки 205-206). Возвращается q<<2|max_i: качество в старших битах, генотип в двух младших (строка 207).",
+        "lines": "202-207"
+      }
+    ],
+    "difficulty": 3,
+    "skill": "Читать байесовский вызов генотипа: правдоподобие × априорная вероятность (Харди-Вайнберг), нормировка и шкала Phred",
+    "unverified": []
+  },
+  {
+    "id": "merqury",
+    "name": "Merqury",
+    "topic": "Качество сборки генома",
+    "repo_url": "https://github.com/marbl/merqury",
+    "paper": {
+      "title": "Merqury: reference-free quality, completeness, and phasing assessment for genome assemblies",
+      "journal": "Genome Biology",
+      "year": 2020,
+      "doi": "10.1186/s13059-020-02134-9"
+    },
+    "license": "Общественное достояние (US Government Work, по файлу LICENSE; GitHub API: NOASSERTION / Other)",
+    "language": "Shell",
+    "file_path": "eval/qv.sh",
+    "permalink": "https://github.com/marbl/merqury/blob/88f37c0f4dbb073001d194bcc5d5989a0b0527df/eval/qv.sh#L50-L83",
+    "line_range": [
+      50,
+      83
+    ],
+    "what": "Основной цикл скрипта qv.sh для каждой сборки находит k-меры, которых нет в ридах (их считают ошибками сборки), и переводит их долю в частоту ошибок на основание и в показатель QV по шкале Phred. Заодно он пишет QV для каждой последовательности и BED-файл с участками, где такие k-меры встретились.",
+    "questions": [
+      {
+        "q": "Какие k-меры скрипт считает ошибками сборки и как их находит?",
+        "a": "Размер k определяется по длине первого поля второй строки вывода meryl print (строка 21: head -n 2 | tail -n 1 | awk length). Затем meryl count считает k-меры сборки (строка 57), а meryl difference (строка 62) оставляет в $asm.0.meryl те k-меры сборки, которых нет в базе ридов $read_db. Допущение (вики Merqury): k-меры, найденные только в сборке, — это ошибки на уровне оснований. В .qv попадают их число ASM_ONLY и общее число k-меров сборки TOTAL (строки 66-67, 73).",
+        "lines": "21, 57, 62, 66-67, 73"
+      },
+      {
+        "q": "По какой формуле частота ошибок и QV получаются из долей k-меров?",
+        "a": "Доля k-меров, найденных в ридах, равна 1 - ASM_ONLY/TOTAL. Если k-мер верен, только когда верны все k его оснований, то (1 - e)^k = 1 - ASM_ONLY/TOTAL, откуда ERROR = 1 - (1 - ASM_ONLY/TOTAL)^(1/k) (строка 71), а QV = -10·log10(ERROR) (строка 72; awk считает через log(x)/log(10)). Пример (посчитан отдельно в python3, не запуском скрипта): ASM_ONLY = 1000, TOTAL = 1 000 000, k = 21 → ERROR ≈ 4,76·10⁻⁵, QV ≈ 43,2. Строка из вики Merqury (682359 из 123511626 k-меров → QV 35,1183, ERROR 0,000307729) воспроизводится этой формулой при k = 18.",
+        "lines": "71-72"
+      },
+      {
+        "q": "Какие файлы создаёт цикл кроме общей строки QV?",
+        "a": "Строка 73 дописывает в $name.qv строку: сборка, ASM_ONLY, TOTAL, QV, ERROR. Строки 77-80: meryl-lookup и awk пишут QV для каждой последовательности в $name.$asm.qv (если k-меров нет, ставится na). Строка 81: участки сборки с «чужими» k-мерами сливаются bedtools merge в ${name}_only.bed, строка 82 пишет глубину в ${name}_only.wig. Для двух сборок (строки 85-110) meryl union-sum объединяет базы и считается строка 'both'.",
+        "lines": "73, 77-82; 85-110"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать bash-скрипты биоинформатики: цепочки meryl, awk и bedtools; формула QV из доли ошибочных k-меров",
+    "unverified": [
+      "значение 4-й строки вывода meryl statistics (строки 66-67) и колонки вывода meryl-lookup (строки 77-80) не проверены запуском: meryl и bedtools не установлены; смысл колонок .qv взят со страницы вики Merqury",
+      "k = 18 для примера из вики подобран по числам (на странице вики k не указан)",
+      "в репозитории нет функций, поэтому вместо функции взят основной цикл скрипта (строки 50-83)"
+    ]
+  },
+  {
+    "id": "mash",
+    "name": "Mash",
+    "topic": "Статистика и утилиты: расстояние между геномами",
+    "repo_url": "https://github.com/marbl/Mash",
+    "paper": {
+      "title": "Mash: fast genome and metagenome distance estimation using MinHash",
+      "journal": "Genome Biology",
+      "year": 2016,
+      "doi": "10.1186/s13059-016-0997-x"
+    },
+    "license": "BSD-подобная лицензия из трёх условий, Battelle / DHS (по файлу LICENSE.txt; GitHub API: NOASSERTION / Other)",
+    "language": "C++",
+    "file_path": "src/mash/CommandDistance.cpp",
+    "permalink": "https://github.com/marbl/Mash/blob/5df1f984a06d568b4c47540042a0e619fd1f7bdd/src/mash/CommandDistance.cpp#L427-L448",
+    "line_range": [
+      427,
+      448
+    ],
+    "what": "Функция pValue оценивает, насколько случайным может быть число общих хешей x в скетчах двух геномов: считает ожидаемую долю совпадений для двух случайных последовательностей и возвращает вероятность увидеть не меньше x совпадений. Её вызывает compareSketches (строка 417), там же находится формула расстояния Mash (строка 401).",
+    "questions": [
+      {
+        "q": "Что возвращает функция, если общих хешей нет, и почему?",
+        "a": "При x == 0 возвращается 1 (строки 429-432): «не меньше нуля» совпадений происходит всегда, вывод о значимости делать нельзя.",
+        "lines": "429-432"
+      },
+      {
+        "q": "Что такое pX, pY и r?",
+        "a": "kmerSpace — число возможных k-меров, alphabetSize^kmerSize (Sketch.cpp:509). pX = 1/(1 + kmerSpace/lengthRef) = lengthRef/(lengthRef + kmerSpace) — шанс, что данный k-мер встретится в случайной последовательности длины lengthRef (строка 434; то же pY для запроса, строка 435). r = pX·pY / (pX + pY − pX·pY) (строка 437) — вероятность оказаться в обеих последовательностях, делённая на вероятность оказаться хотя бы в одной, то есть ожидаемый индекс Жаккара двух случайных последовательностей (формулы из doc/sphinx/distances.rst). Пример по этой формуле (посчитан отдельно, Mash не запускался): для двух геномов по 5 Мб при k = 21 r ≈ 5,7·10⁻⁷.",
+        "lines": "434-437; Sketch.cpp:509; doc/sphinx/distances.rst:86-99"
+      },
+      {
+        "q": "Что именно возвращает последняя строка и зачем две ветки с USE_BOOST?",
+        "a": "gsl_cdf_binomial_Q(x - 1, r, sketchSize) (строка 446) — вероятность получить не менее x совпадений в sketchSize независимых испытаниях с вероятностью успеха r. Документация Mash описывает то же как хвост кумулятивного биномиального распределения, p = 1 − Σ_{i=0}^{x−1} C(s,i)·j_r^i·(1−j_r)^{s−i} (doc/sphinx/distances.rst:101-106). Ветка с cdf(complement(binomial(sketchSize, r), x - 1)) (строки 443-445) делает то же через Boost: библиотека выбирается при компиляции. Пример (посчитан отдельно): при sketchSize = 1000 и r из предыдущего вопроса один случайно общий хеш имеет p ≈ 5,7·10⁻⁴, два — p ≈ 1,6·10⁻⁷.",
+        "lines": "443-447; doc/sphinx/distances.rst:101-106"
+      }
+    ],
+    "difficulty": 2,
+    "skill": "Читать статистический код: p-значение как хвост биномиального распределения и перевод формулы из документации в код",
+    "unverified": [
+      "семантика gsl_cdf_binomial_Q не сверена с руководством GSL (сайт gnu.org не ответил); совпадение с формулой хвоста биномиального распределения подтверждено документацией самого Mash"
+    ]
+  }
+]
+;
 /* ---------- DATA: modules, quizzes, glossary, pipelines, markers ---------- */
 const MODS=[
  ['start','Старт','Разбор фразы из твоего пилота по кускам.'],
@@ -2096,7 +2516,7 @@ INIT.code=function(){
     let h='<h3>'+link(r.repo_url,r.name)+'</h3><p class="hint">'+esc(r.topic||'')+'</p>';
     h+='<p><b>Статья:</b> '+(p.title?esc(p.title)+', '+esc(p.journal||'')+' '+esc(p.year||'')+(p.doi?' ('+link('https://doi.org/'+p.doi,'doi:'+p.doi)+')':''):'не проверено')+'</p>';
     h+='<p><b>Язык:</b> '+esc(r.language||'?')+' · <b>лицензия:</b> '+esc(r.license||'не указана')+' · <b>сложность:</b> '+esc(r.difficulty||'?')+' из 3</p>';
-    h+='<p><b>Что читать:</b> '+(r.permalink?link(r.permalink,r.file_path+(r.line_range?' (строки '+r.line_range+')':'')):esc(r.file_path||'не указано'))+'</p>';
+    h+='<p><b>Что читать:</b> '+(r.permalink?link(r.permalink,r.file_path+(r.line_range?' (строки '+(Array.isArray(r.line_range)?r.line_range.join('–'):r.line_range)+')':'')):esc(r.file_path||'не указано'))+'</p>';
     if(r.what)h+='<p>'+esc(r.what)+'</p>';
     if(r.skill)h+='<p class="meta">Чему учит: '+esc(r.skill)+'</p>';
     if(Array.isArray(r.questions))h+=r.questions.map(q=>'<details class="qa"><summary>'+esc(q.q)+'</summary><div><p>'+esc(q.a)+'</p>'+(q.lines?'<p class="meta">Строки: '+esc(q.lines)+'</p>':'')+'</div></details>').join('');

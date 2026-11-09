@@ -104,7 +104,7 @@ INIT.code=function(){
     let h='<h3>'+link(r.repo_url,r.name)+'</h3><p class="hint">'+esc(r.topic||'')+'</p>';
     h+='<p><b>Статья:</b> '+(p.title?esc(p.title)+', '+esc(p.journal||'')+' '+esc(p.year||'')+(p.doi?' ('+link('https://doi.org/'+p.doi,'doi:'+p.doi)+')':''):'не проверено')+'</p>';
     h+='<p><b>Язык:</b> '+esc(r.language||'?')+' · <b>лицензия:</b> '+esc(r.license||'не указана')+' · <b>сложность:</b> '+esc(r.difficulty||'?')+' из 3</p>';
-    h+='<p><b>Что читать:</b> '+(r.permalink?link(r.permalink,r.file_path+(r.line_range?' (строки '+r.line_range+')':'')):esc(r.file_path||'не указано'))+'</p>';
+    h+='<p><b>Что читать:</b> '+(r.permalink?link(r.permalink,r.file_path+(r.line_range?' (строки '+(Array.isArray(r.line_range)?r.line_range.join('–'):r.line_range)+')':'')):esc(r.file_path||'не указано'))+'</p>';
     if(r.what)h+='<p>'+esc(r.what)+'</p>';
     if(r.skill)h+='<p class="meta">Чему учит: '+esc(r.skill)+'</p>';
     if(Array.isArray(r.questions))h+=r.questions.map(q=>'<details class="qa"><summary>'+esc(q.q)+'</summary><div><p>'+esc(q.a)+'</p>'+(q.lines?'<p class="meta">Строки: '+esc(q.lines)+'</p>':'')+'</div></details>').join('');
