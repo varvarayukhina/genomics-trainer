@@ -178,7 +178,7 @@ details.qa>div{padding:0 0 14px}
 details.qa p{margin-bottom:.6rem}
 
 /* sentence decoder */
-.sentence{font-size:clamp(1.35rem,3.2vw,1.9rem);line-height:1.7;max-width:34ch;margin:1.2rem 0}
+.sentence{font-size:clamp(1.3rem,3vw,1.7rem);line-height:1.8;max-width:46ch;margin:1.2rem 0}
 .sentence button{font:inherit;font-weight:600;min-height:0;padding:0 .18em;border:0;border-bottom:3px solid var(--line-strong);border-radius:0;display:inline;background:transparent;color:var(--ink);cursor:pointer}
 .sentence button:hover{background:var(--sunken)}
 .sentence button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-bottom-color:var(--ink)}
@@ -230,33 +230,26 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </div>
 <main id="main" tabindex="-1">
 <article class="view" id="view-start" data-title="Старт">
-  <h1>Копий по одной сборке в тандемных семействах отличается между гаплотипами одного животного на единицы локусов</h1>
-  <p class="lede">Это фраза из итога твоего пилота. Нажимай на подчёркнутые куски: каждый раскрывается простыми словами. Весь тренажёр построен вокруг этой фразы и вокруг настоящих чисел из пилота.</p>
+  <h1>Научный текст по биоинформатике похож на иностранный язык</h1>
+  <p class="lede">Сначала научимся его переводить, потом читать и писать код. Выбери фразу и нажимай на выделенные куски: каждый раскрывается простыми словами и ведёт в модуль, где это разбирается подробно. Числа в фразах придуманы для примера.</p>
 
-  <div class="sentence" id="sentence" role="group" aria-label="Фраза по частям">
-    <button type="button" data-k="copies" aria-pressed="false">Копий</button>
-    <button type="button" data-k="assembly" aria-pressed="false">по одной сборке</button>
-    <button type="button" data-k="tandem" aria-pressed="false">в тандемных семействах</button>
-    <button type="button" data-k="hap" aria-pressed="false">между гаплотипами</button>
-    <button type="button" data-k="one" aria-pressed="false">одного животного</button>
-    <button type="button" data-k="loci" aria-pressed="false">на единицы локусов</button>
-  </div>
-  <div class="decode" id="decode" aria-live="polite"><b>Выбери кусок фразы</b>Здесь появится объяснение и ссылка на модуль, где это разбирается подробно.</div>
-
-  <h2>Фраза целиком, простыми словами</h2>
-  <p>Берём одного летучего мыша. У него два набора хромосом, и геном каждого набора собран отдельно (hap1 и hap2). В обоих наборах ищем гены одного семейства, которые стоят в геноме подряд, как повторяющиеся страницы. Считаем найденные копии в каждом наборе отдельно. Числа получаются разные, и отличаются на несколько штук.</p>
-  <p>Отсюда вывод для статьи: число копий, посчитанное по одной сборке, уже у одного животного неточно на несколько штук. Часть этой разницы настоящая биология (у человека KIR-гаплотипы разного размера), часть создают сборка и программа поиска.</p>
+  <h2>Переводчик</h2>
+  <div class="field-inline" id="phrase-tabs" role="group" aria-label="Фраза"></div>
+  <div class="sentence" id="sentence" role="group" aria-label="Фраза по частям"></div>
+  <div class="decode" id="decode" aria-live="polite"><b>Выбери кусок фразы</b>Здесь появится объяснение.</div>
+  <p style="margin-top:1rem"><button type="button" id="plain-btn">Показать фразу целиком простыми словами</button></p>
+  <div id="plain" class="note" hidden></div>
 
   <h2>Как устроен тренажёр</h2>
   <ul class="plan" id="plan"></ul>
 
   <div class="note"><b>Что здесь настоящее, а что учебное</b>
-  Примеры кода запущены, под каждым лежит его настоящий вывод (Python 3.12, R 4.4.1 с DESeq2 1.46). Числа пилота прочитаны из твоих файлов <code>bat-nk-pilot</code>. Интерактивные симуляции учебные, на них стоит пометка «симуляция». Подсчёты пилота автоматические, без ручной проверки, и в тренажёре так и сказано.</div>
+  Примеры кода запущены, под каждым лежит его настоящий вывод (Python 3.12, R 4.4.1 с DESeq2 1.46). Практикум запускает твой Python прямо в браузере. Числа в разборах взяты из реального проекта: сравнение двух гаплотипов у трёх видов летучих мышей, автоматические подсчёты без ручной проверки. Интерактивные симуляции учебные, на них стоит пометка «симуляция».</div>
 
-  <div class="note warn"><b>Как пользоваться перед собеседованием</b>
+  <div class="note warn"><b>Как пользоваться</b>
   Определения и объяснения собраны по общепринятым учебным источникам. Прежде чем произносить цифры или названия вслух, сверяй их с первоисточником: тренажёр не заменяет статью.</div>
 
-  <div class="pager"><span></span><a class="btn primary" href="#genome">Начать: геном и гаплотипы</a></div>
+  <div class="pager"><span></span><a class="btn primary" href="#map">Начать: карта задач</a></div>
 </article>
 <article class="view" id="view-map" data-title="Карта задач" hidden>
   <h1>Что можно сделать с данными: карта задач</h1>
@@ -1888,7 +1881,7 @@ const CODEREAD=[
 ;
 /* ---------- DATA: modules, quizzes, glossary, pipelines, markers ---------- */
 const MODS=[
- ['start','Старт','Разбор фразы из твоего пилота по кускам.'],
+ ['start','Старт','Переводчик научных фраз: непонятный текст по кускам.'],
  ['map','Карта задач','Биологический вопрос, данные, метод, результат, ловушка. С чего начинается работа биоинформатика.'],
  ['genome','Геном и гаплотипы','Ген, локус, аллель, гаплотип, диплоидность, фазирование.'],
  ['assembly','Сборка генома','Контиги, скаффолды, N50, почему тандемные массивы трудно собирать.'],
@@ -2133,30 +2126,53 @@ function initQuiz(box){
           if(!$('.retry',box)){const b=document.createElement('button');b.type='button';b.className='retry';b.textContent='Пройти заново';b.addEventListener('click',()=>{box.innerHTML='';initQuiz(box)});box.appendChild(b)}}
         else sc.textContent='Отвечено: '+n+' из '+qs.length})})}}
 
-/* start view */
-const DECODE={
- copies:['Копия','Копия — ещё один экземпляр того же гена в геноме. В семействах генов их бывает от одного до нескольких десятков.','copies'],
- assembly:['Одна сборка','Сборка — геном, собранный программой из коротких кусков прочтений. Одна сборка — один файл FASTA. Подсчёт делали отдельно в каждом файле, поэтому в каждой сборке своё число.','assembly'],
- tandem:['Тандемное семейство','Семейство генов — группа похожих генов общего происхождения (KLR, LILR, MHC-I). Тандемное — копии стоят подряд, как одинаковые страницы в тетради. Такие участки трудно собрать и трудно посчитать.','genome'],
- hap:['Гаплотипы','У диплоидного животного два набора хромосом: от мамы и от папы. Один такой набор — гаплотип. NCBI хранит hap1 и hap2 как две отдельные сборки. Это не обязательно материнский и отцовский: чей именно, без родителей неизвестно.','genome'],
- one:['Одно животное','Обе сборки сделаны из одного образца (одинаковый BioSample в NCBI). Значит, различия не между видами и не между особями, а внутри одного организма.','assembly'],
- loci:['Единицы локусов','Локус — место в геноме, где программа нашла ген или его остатки. «Единицы» — несколько штук: в пилоте разница между hap1 и hap2 чаще 0–3 локуса, максимум 7.','copies']
-};
-function initStart(){
-  const ul=$('#plan');MODS.slice(1).forEach(([id,t,d])=>{const li=document.createElement('li');li.innerHTML='<a href="#'+id+'">'+esc(t)+'</a><span>'+esc(d)+'</span>';ul.appendChild(li)});
-  const box=$('#decode');
-  $$('#sentence button').forEach(b=>b.addEventListener('click',()=>{
-    $$('#sentence button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
-    const [t,txt,mod]=DECODE[b.dataset.k];const m=MODS.find(x=>x[0]===mod);
-    box.innerHTML='<b>'+esc(t)+'</b>'+esc(txt)+' <a href="#'+mod+'">Подробнее: '+esc(m[1])+'</a>'}))}
-INIT.start=initStart;
-
 function boot(){
   initTheme();initCopy();initQuizzes();
   $('#mods-select').addEventListener('change',e=>{location.hash=e.target.value});
   window.addEventListener('hashchange',show);
   if(!location.hash)history.replaceState(null,'','#start');
   show()}
+
+/* ---------- START: phrase translator ---------- */
+const PHRASES=[
+ {id:'hap',tab:'Про гаплотипы',plain:'Берём одного летучего мыша. У него два набора хромосом, и геном каждого набора собран отдельно. В обоих наборах ищем гены одного семейства, которые стоят подряд, и считаем найденные копии в каждом наборе. Числа получаются разные, и отличаются на несколько штук. Значит, число копий, посчитанное по одной сборке, неточно на несколько штук.',
+  parts:[
+   ['Копий по одной сборке','Копия и сборка','Копия — ещё один экземпляр того же гена в геноме. Сборка — геном, собранный программой из коротких кусков прочтений. Одна сборка — один файл FASTA, подсчёт делали в каждом файле отдельно.','assembly'],
+   ['в тандемных семействах','Тандемное семейство','Семейство генов — группа похожих генов общего происхождения. Тандемное — копии стоят в геноме подряд, как одинаковые страницы в тетради. Такие участки трудно собрать и трудно посчитать.','genome'],
+   ['между гаплотипами одного животного','Гаплотипы','У диплоидного животного два набора хромосом, от мамы и от папы. Один такой набор — гаплотип. NCBI хранит hap1 и hap2 как две отдельные сборки. Обе сделаны из одного образца, поэтому различия не между видами, а внутри одного организма.','genome'],
+   ['на единицы локусов','Единицы локусов','Локус — место в геноме, где программа нашла ген или его остатки. «Единицы» — несколько штук: в пилоте разница между hap1 и hap2 чаще 0–3 локуса, максимум 7.','copies']]},
+ {id:'stats',tab:'Про статистику',plain:'Проверили 10 000 генов сразу. Часть из них оказалась «значимой» случайно, поэтому p-значения пересчитали так, чтобы ожидаемая доля ложных находок среди найденных не превышала 5 %. После пересчёта осталось 180 генов.',
+  parts:[
+   ['После поправки Бенджамини–Хохберга','Поправка на множественные сравнения','Когда проверяют тысячи генов сразу, часть «значимых» получается случайно. Поправка пересчитывает p-значения так, чтобы контролировать долю ложных находок.','stats'],
+   ['при FDR 5 %','FDR','FDR — ожидаемая доля ложных среди найденных. 5 % значит: среди найденных генов ложных в среднем не больше каждого двадцатого.','stats'],
+   ['значимыми остались 180 генов','Что значит «значимо»','«Значимо» здесь значит «прошёл порог после поправки». Это не «важно биологически». Размер эффекта надо смотреть отдельно.','stats'],
+   ['из 10 000','Сколько проверяли','Чем больше проверено, тем строже поправка. Поэтому с 10 000 генов порог жёстче, чем с 20.','stats']]},
+ {id:'sc',tab:'Про одноклеточные данные',plain:'Клетки разделили на группы похожих, потом по характерным генам подписали, что это за клетки. Одна группа похожа на NK-клетки и составляет 2 % образца.',
+  parts:[
+   ['Кластеры Leiden','Кластеризация','Leiden — алгоритм, который делит клетки на группы так, чтобы внутри группы клетки были похожи, а между группами нет.','singlecell'],
+   ['на графе kNN','Граф ближайших соседей','Каждая клетка соединяется со своими k ближайшими соседями по профилю экспрессии. Кластеризуют именно этот граф.','singlecell'],
+   ['по 30 главным компонентам','PCA','PCA сжимает тысячи генов до нескольких осей наибольшей изменчивости. Граф строят в этом сжатом пространстве.','stats'],
+   ['аннотировали по маркерам','Аннотация по маркерам','Каждой группе дали имя по генам-маркёрам типа клеток. Такие метки хрупкие: общие гены цитотоксичности есть у разных типов клеток.','singlecell'],
+   ['NK-подобные клетки составили 2 % образца','Почему «подобные»','«Подобные» потому, что тип определён по транскриптам, без проверки функции. Доля зависит от ткани, обработки и порогов.','singlecell']]}
+];
+function initStart(){
+  const ul=$('#plan');MODS.slice(1).forEach(([id,t,d])=>{const li=document.createElement('li');li.innerHTML='<a href="#'+id+'">'+esc(t)+'</a><span>'+esc(d)+'</span>';ul.appendChild(li)});
+  const tabs=$('#phrase-tabs'),sent=$('#sentence'),box=$('#decode'),plain=$('#plain'),pb=$('#plain-btn');let cur=0;
+  function draw(){
+    const P=PHRASES[cur];$$('#phrase-tabs .chip').forEach((b,i)=>b.setAttribute('aria-pressed',i===cur?'true':'false'));
+    clearEl(sent);
+    P.parts.forEach(pt=>{
+      const b=document.createElement('button');b.type='button';b.setAttribute('aria-pressed','false');b.textContent=pt[0];
+      b.addEventListener('click',()=>{
+        $$('#sentence button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
+        const m=MODS.find(x=>x[0]===pt[3]);
+        box.innerHTML='<b>'+esc(pt[1])+'</b>'+esc(pt[2])+' <a href="#'+pt[3]+'">Подробнее: '+esc(m[1])+'</a>'});
+      sent.appendChild(b);sent.appendChild(document.createTextNode(' '))});
+    box.innerHTML='<b>Выбери кусок фразы</b>Здесь появится объяснение.';plain.hidden=true;pb.textContent='Показать фразу целиком простыми словами'}
+  PHRASES.forEach((P,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=P.tab;b.addEventListener('click',()=>{cur=i;draw()});tabs.appendChild(b)});
+  pb.addEventListener('click',()=>{plain.hidden=!plain.hidden;plain.innerHTML=plain.hidden?'':'<b>Простыми словами</b>'+esc(PHRASES[cur].plain);pb.textContent=plain.hidden?'Показать фразу целиком простыми словами':'Скрыть'});
+  draw()}
+INIT.start=initStart;
 
 /* ---------- WIDGETS 1: genome, assembly, formats, alignment ---------- */
 const BASES='TCAG',AMINO='FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG';

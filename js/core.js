@@ -75,24 +75,6 @@ function initQuiz(box){
           if(!$('.retry',box)){const b=document.createElement('button');b.type='button';b.className='retry';b.textContent='Пройти заново';b.addEventListener('click',()=>{box.innerHTML='';initQuiz(box)});box.appendChild(b)}}
         else sc.textContent='Отвечено: '+n+' из '+qs.length})})}}
 
-/* start view */
-const DECODE={
- copies:['Копия','Копия — ещё один экземпляр того же гена в геноме. В семействах генов их бывает от одного до нескольких десятков.','copies'],
- assembly:['Одна сборка','Сборка — геном, собранный программой из коротких кусков прочтений. Одна сборка — один файл FASTA. Подсчёт делали отдельно в каждом файле, поэтому в каждой сборке своё число.','assembly'],
- tandem:['Тандемное семейство','Семейство генов — группа похожих генов общего происхождения (KLR, LILR, MHC-I). Тандемное — копии стоят подряд, как одинаковые страницы в тетради. Такие участки трудно собрать и трудно посчитать.','genome'],
- hap:['Гаплотипы','У диплоидного животного два набора хромосом: от мамы и от папы. Один такой набор — гаплотип. NCBI хранит hap1 и hap2 как две отдельные сборки. Это не обязательно материнский и отцовский: чей именно, без родителей неизвестно.','genome'],
- one:['Одно животное','Обе сборки сделаны из одного образца (одинаковый BioSample в NCBI). Значит, различия не между видами и не между особями, а внутри одного организма.','assembly'],
- loci:['Единицы локусов','Локус — место в геноме, где программа нашла ген или его остатки. «Единицы» — несколько штук: в пилоте разница между hap1 и hap2 чаще 0–3 локуса, максимум 7.','copies']
-};
-function initStart(){
-  const ul=$('#plan');MODS.slice(1).forEach(([id,t,d])=>{const li=document.createElement('li');li.innerHTML='<a href="#'+id+'">'+esc(t)+'</a><span>'+esc(d)+'</span>';ul.appendChild(li)});
-  const box=$('#decode');
-  $$('#sentence button').forEach(b=>b.addEventListener('click',()=>{
-    $$('#sentence button').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));
-    const [t,txt,mod]=DECODE[b.dataset.k];const m=MODS.find(x=>x[0]===mod);
-    box.innerHTML='<b>'+esc(t)+'</b>'+esc(txt)+' <a href="#'+mod+'">Подробнее: '+esc(m[1])+'</a>'}))}
-INIT.start=initStart;
-
 function boot(){
   initTheme();initCopy();initQuizzes();
   $('#mods-select').addEventListener('change',e=>{location.hash=e.target.value});

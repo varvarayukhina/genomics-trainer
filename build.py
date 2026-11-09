@@ -91,7 +91,7 @@ def main() -> None:
     parts = [(src / "head.html").read_text(encoding="utf-8"), (src / "shell_open.html").read_text(encoding="utf-8")]
     parts += [expand((src / f"{v}.html").read_text(encoding="utf-8")) for v in VIEWS]
     parts.append((src / "shell_close.html").read_text(encoding="utf-8"))
-    js = "\n".join((ROOT / "js" / f).read_text(encoding="utf-8") for f in ("data.js", "core.js", "widgets1.js", "widgets2.js", "tasks.js", "map.js", "practice.js"))
+    js = "\n".join((ROOT / "js" / f).read_text(encoding="utf-8") for f in ("data.js", "core.js", "start.js", "widgets1.js", "widgets2.js", "tasks.js", "map.js", "practice.js"))
     parts.append(f"<script>\n(function(){{\n'use strict';\nconst PILOT={pilot_json()};\nconst HARNESS={json.dumps((ROOT / "src" / "harness.py").read_text(encoding="utf-8"), ensure_ascii=False)};\nconst CODEREAD={coderead_json()};\n{js}\nboot();\n}})();\n</script>\n")
     (ROOT / "site.html").write_text("".join(parts), encoding="utf-8")
     print("site.html:", (ROOT / "site.html").stat().st_size, "bytes")
